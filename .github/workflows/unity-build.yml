@@ -1,0 +1,501 @@
+name: Build actions 😎
+
+on:
+  # schedule:
+  #   - cron: '0 10 * * *' # Runs daily at 10:00 UTC (6:00 EDT)
+  workflow_dispatch:    # Allows you to run this workflow manually from the Actions tab
+    inputs:
+      targetPlatform:
+        type: choice
+        description: Target Platform
+        options: 
+        - Default
+        - StandaloneWindows
+        - StandaloneWindows64
+        - StandaloneLinux64
+        - StandaloneOSX
+        - WebGL
+        - iOS
+        - Android
+        - All
+      release:
+        type: boolean
+        description: "Upload this build as a release."
+        default: true
+      alwaysSaveCaches:
+        type: boolean
+        description: "Save caches even if the build fails."
+        default: false
+
+jobs:
+  log_params:
+    name: Log parameters 👣
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        run: echo "${{toJson(github)}}"
+  
+  check_branch:
+    name: Check branch 🌳
+    runs-on: ubuntu-latest        
+    outputs:
+       release_tag: ${{ steps.set_release_tag.outputs.RELEASE_TAG }}
+    steps:
+      - id: set_release_tag
+        run: |
+          if [ ${{ github.ref }} == 'refs/heads/main' ]; then
+            RELEASE_TAG="latest"
+          else
+            BRANCH_NAME=${{ github.ref_name }}
+            RELEASE_TAG=${BRANCH_NAME//[\/]/\.}
+          fi
+          echo "Release tag: $RELEASE_TAG"
+          echo "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_OUTPUT
+
+  check_new_commits:
+    name: Check if new commits 🗞
+    runs-on: ubuntu-latest
+    needs: [check_branch]
+    outputs:
+      should_run: ${{ steps.should_run.outputs.should_run }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - id: should_run
+        continue-on-error: true
+        name: Check for commits since last release of "${{ needs.check_branch.outputs.release_tag }}" tag
+#         if: ${{ github.event_name == 'schedule' }}
+#         run: |
+#           test -z $(git rev-list  --after="24 hours"  ${{ github.sha }}) \
+#             && echo "should_run=false" >> $GITHUB_OUTPUT
+        run: |
+          echo "should_run=true" >> $GITHUB_OUTPUT
+          # Check if the release tag already exists
+          if git show-ref --tags "${{ needs.check_branch.outputs.release_tag }}" --quiet; then
+            echo "Tag exists"
+            # If it exists, check if there are new commits since the last release
+            test -z "$(git rev-list ${{ needs.check_branch.outputs.release_tag }}..${{ github.sha }})"\
+              && (echo "should_run=false" >> $GITHUB_OUTPUT);
+          else
+            echo "Tag doesn't exist or error in command"
+          fi
+  
+  prepare_matrix:
+    name: Prepare target platform matrix 💽
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Prepare target platform matrix 💽
+        id: set-matrix
+        run: |
+          if [ ${{ github.event_name }} == 'workflow_dispatch' ]; then
+            TARGET_PLATFORM_INPUT="${{ github.event.inputs.targetPlatform }}"
+          else
+            TARGET_PLATFORM_INPUT="Default"
+          fi
+          if [ ${{ github.event_name }} == 'workflow_dispatch' ]; then
+            case $TARGET_PLATFORM_INPUT in
+              Default)
+                matrix=$(echo '[{"targetPlatform":"StandaloneWindows64"},{"targetPlatform":"StandaloneLinux64"}]' | jq '.')
+                ;;
+              All)
+                # matrix=$(echo '[{"targetPlatform":"StandaloneWindows"},{"targetPlatform":"StandaloneWindows64"},{"targetPlatform":"StandaloneLinux64"},{"targetPlatform":"StandaloneOSX"},{"targetPlatform":"WebGL"},{"targetPlatform":"iOS"},{"targetPlatform":"Android"}]' | jq '.')
+                matrix=$(echo '[{"targetPlatform":"StandaloneWindows"},{"targetPlatform":"StandaloneWindows64"},{"targetPlatform":"StandaloneLinux64"},{"targetPlatform":"StandaloneOSX"},{"targetPlatform":"WebGL"},{"targetPlatform":"iOS"},{"targetPlatform":"Android"}]' | jq '.')
+                ;;
+              *)
+                matrix=$(echo '[{"targetPlatform":"${{github.event.inputs.targetPlatform}}"}]' | jq '.')
+                ;;
+            esac
+          else
+            matrix=$(echo '[{"targetPlatform":"StandaloneWindows64"},{"targetPlatform":"StandaloneLinux64"}]' | jq '.')
+          fi
+          echo $matrix
+          echo "matrix={\"include\":$(echo $matrix)}" >> $GITHUB_OUTPUT
+      
+  build:
+    name: Build 🏗✨
+    runs-on: ubuntu-latest
+    needs: [check_branch,check_new_commits,prepare_matrix]
+#     if: (needs.check_new_commits.result == 'success' || needs.check_new_commits.result == 'skipped')
+    if: (needs.check_new_commits.outputs.should_run == 'true')
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    outputs:
+      buildVersion: ${{ steps.set-build-version.outputs.buildVersion }}
+      buildName: ${{ steps.set-build-version.outputs.buildName }}
+      executableName: ${{ steps.set-build-version.outputs.executableName }}
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: false
+      matrix: ${{fromJson(needs.prepare_matrix.outputs.matrix)}}
+    steps:
+      # v Checkout (without LFS content, just pointers) v -------------------------------
+      - name: Checkout repository ⬇
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          submodules: 'recursive'
+          lfs: true
+          token: ${{ secrets.REPOS_ACCESS_TOKEN }}
+      # ^ Checkout  ^ -------------------------------
+      
+      - name: Determine build version number
+        id: set-build-version
+        run: |
+          REPO_NAME=$(basename ${{ github.repository }})
+          echo "Repo: $REPO_NAME"
+          LAST_VERSION_TAG=$(git describe --tags --match="v[0-9]*\.[0-9]*" --abbrev=0)
+          echo "Last version tag: $LAST_VERSION_TAG"
+          MAJOR_MINOR_VERSION=$(echo $LAST_VERSION_TAG | grep -oP "[0-9]+\.[0-9]+")
+          echo "Major.Minor version: $MAJOR_MINOR_VERSION"
+          if [ ${{ github.ref }} == 'refs/heads/main' ]; then
+            REVISION=$(git rev-list --count "$LAST_VERSION_TAG..HEAD")
+            BRANCH_SUFFIX=""
+          else
+            REVISION=$(git rev-list --count "$LAST_VERSION_TAG..HEAD")
+            BRANCH_REVISION=$(git rev-list --count "origin/main..HEAD")
+            REVISION=$(($REVISION-$BRANCH_REVISION))
+            BRANCH_SUFFIX="-${{ needs.check_branch.outputs.release_tag }}.$BRANCH_REVISION"
+          fi
+          echo "Revision: $REVISION"
+          echo "Branch suffix: $BRANCH_SUFFIX"
+          BUILD_VERSION="$MAJOR_MINOR_VERSION.$REVISION$BRANCH_SUFFIX"
+          echo "Build version: $BUILD_VERSION"
+          echo "buildVersion=$BUILD_VERSION" >> $GITHUB_OUTPUT
+          BUILD_NAME="${REPO_NAME}_${BUILD_VERSION}_${{matrix.targetPlatform}}"
+          echo "Build name: $BUILD_NAME"
+          echo "buildName=$BUILD_NAME" >> $GITHUB_OUTPUT
+          EXECUTABLE_NAME=$REPO_NAME
+          echo "Executable name: $EXECUTABLE_NAME"
+          echo "executableName=$EXECUTABLE_NAME" >> $GITHUB_OUTPUT
+
+      # v Git LFS v -------------------------------
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
+      - name: Restore LFS cache 📂💾
+        uses: pat-s/always-upload-cache@v3.0.11
+        id: cache-lfs
+        with:
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+          restore-keys: |
+            ${{ runner.os }}-lfs-
+
+      - name: Git LFS Pull ⬇
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+          
+      - name: Test LFS
+        run: |
+          wc -c Assets/Private/Plugins/Sirenix/Assemblies/NoEmitAndNoEditor/Sirenix.Utilities.dll
+      # ^ Git LFS ^ -------------------------------
+      
+      # v Git annex v -------------------------------
+      - name: Install git-annex
+        run: |
+          sudo apt-get update
+          sudo apt-get install git-annex
+          
+      - name: Clone unversioned repo ⬇
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ github.repository }}-Unversioned
+          path: Assets/Unversioned
+          token: ${{ secrets.REPOS_ACCESS_TOKEN }}
+          fetch-depth: 0
+      
+      - name: Test unversioned
+        run: |
+          cd Assets/Unversioned
+          find . -type f | cut -d/ -f2 | sort | uniq -c
+          cd ../..
+          
+      - name: Configure git credentials
+        run: |
+          git config --global user.email "bowlmonkeylabs@gmail.com"
+          git config --global user.name bowlmonkeylabs
+
+      - name: Configure Unversioned annex
+        run: |
+          cd Assets/Unversioned
+          git annex init
+          
+      - name: Test Unversioned annex
+        run: |
+          cd Assets/Unversioned
+          find . -type f | cut -d/ -f2 | sort | uniq -c
+          git annex list "Epic Toon FX/Materials/Basics/glow5_ADD.mat"
+          git annex info
+          cat ./.git/annex/index
+          
+      - name: Enable annex special remotes
+        run: |
+          cd Assets/Unversioned
+          git annex enableremote cloud-s3
+          git annex enableremote cloud
+          echo ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            
+      - name: Restore Unversioned cache 📂
+        uses: actions/cache/restore@v3
+        id: cache-restore-unversioned
+        with:
+          path: Assets/Unversioned
+          key: ${{ runner.os }}-UnversionedAssets-${{ hashFiles('Assets/Unversioned/.git/annex/index') }}
+          restore-keys: |
+            ${{ runner.os }}-UnversionedAssets
+          
+      - name: Sync Unversioned annex 🔁
+        run: |
+          cd Assets/Unversioned
+          git annex sync --content
+          git annex unlock
+          cd ../..
+          
+      - name: Save Unversioned cache 💾
+        id: cache-save-unversioned
+        if: success() || (github.event_name == 'workflow_dispatch' && github.event.inputs.alwaysSaveCaches == 'true')
+        uses: actions/cache/save@v3
+        with:
+          path: Assets/Unversioned
+          key: ${{ runner.os }}-UnversionedAssets-${{ hashFiles('Assets/Unversioned/.git/annex/index') }}
+#           key: ${{ runner.os }}-UnversionedAssets
+          restore-keys: |
+            ${{ runner.os }}-UnversionedAssets
+      # ^ Git annex ^ -------------------------------
+
+      # v Restore Unity caches v -------------------------------
+      - name: Restore Library cache 📂
+        id: cache-restore-library
+        uses: actions/cache/restore@v3
+        with:
+          path: Library
+          key: ${{ runner.os }}-Library-${{ matrix.targetPlatform }}-${{ steps.set-build-version.outputs.buildVersion }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-Library-${{ matrix.targetPlatform }}
+            ${{ runner.os }}-Library
+
+      - name: Restore "everything else" cache 📂
+        id: cache-restore-everything-else
+        uses: actions/cache/restore@v3
+        with:
+#          path: |
+#                  Temp
+#                  Builds
+#                  build
+#                  obj
+#                  *.csproj
+          path: |
+            Temp
+            obj
+            *.csproj
+          key: ${{ runner.os }}-EverythingElse-${{ matrix.targetPlatform }}-${{ steps.set-build-version.outputs.buildVersion }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-EverythingElse-${{ matrix.targetPlatform }}
+            ${{ runner.os }}-EverythingElse
+      # ^ Restore Unity caches ^ -------------------------------
+
+      # v Game CI v -------------------------------
+      - name: Test bundle version
+        run: |
+          chmod +x ./.scripts/lib/get-unity-bundle-version.sh
+          echo $(./.scripts/lib/get-unity-bundle-version.sh)
+
+      - name: Build project ⚙
+        id: unity-build
+        uses: game-ci/unity-builder@v2
+        continue-on-error: true
+        timeout-minutes: 30
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: ${{ matrix.targetPlatform }}
+#           versioning: Semantic
+          versioning: Custom
+          version: ${{ steps.set-build-version.outputs.buildVersion }}
+#          buildName: ${{ steps.set-build-version.outputs.buildName }}
+          buildName: ${{ steps.set-build-version.outputs.executableName }}
+          allowDirtyBuild: true
+          customParameters: -Development
+          
+      - name: Try delete Unity lock file 🔨
+        if: (steps.unity-build.outcome == 'failure')
+        continue-on-error: true
+        run: |
+          sudo rm -f ./Temp/UnityLockfile
+          sudo rm -f ./Library/ArtifactDB-lock
+          sudo rm -f ./Library/SourceAssetDB-lock
+
+      - name: Build project retry 🎲
+        id: unity-build-retry
+        uses: game-ci/unity-builder@v2
+        if: (steps.unity-build.outcome == 'failure')
+        timeout-minutes: 120
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: ${{ matrix.targetPlatform }}
+#           versioning: Semantic
+          versioning: Custom
+          version: ${{ steps.set-build-version.outputs.buildVersion }}
+#          buildName: ${{ steps.set-build-version.outputs.buildName }}
+          buildName: ${{ steps.set-build-version.outputs.executableName }}
+          allowDirtyBuild: true
+          customParameters: -Development
+          
+      - name: Test bundle version
+        run: |
+          chmod +x ./.scripts/lib/get-unity-bundle-version.sh
+          echo $(./.scripts/lib/get-unity-bundle-version.sh)
+          echo $BUILD_VERSION
+      # ^ Game CI ^ -------------------------------
+          
+      # v Upload build artifacts v -------------------------------
+      - name: Own project directory
+        run: |
+          export executing_user=$(whoami)
+          sudo chown "$executing_user" ./
+          
+#       - name: Zip build
+#         id: zip-build
+#         run: |
+#           pwd
+#           cd ./build/${{ matrix.targetPlatform }}
+#           #ZIP_CONTENT_PATH="./build/${{ matrix.targetPlatform }}"
+#           ZIP_FILE_PATH="../${{ steps.set-params.outputs.BUILD_NAME }}.zip"
+#           #echo $ZIP_CONTENT_PATH
+#           echo $ZIP_FILE_PATH
+#           ls
+#           zip -r "$ZIP_FILE_PATH" .
+#           echo "ZIP_FILE_PATH=$ZIP_FILE_PATH" >> $GITHUB_OUTPUT
+#           cd ../..
+
+      - name: Test for build results
+        run: |
+          ls ./build
+
+      - name: Upload build artifact 📦
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ steps.set-build-version.outputs.buildName }}
+          path: build/${{ matrix.targetPlatform }}
+          
+      # ^ Upload build artifacts ^ -------------------------------
+        
+      # v Save Unity caches v -------------------------------
+      - name: Save Library cache 💾
+        id: cache-save-library
+        if: success() || (github.event_name == 'workflow_dispatch' && github.event.inputs.alwaysSaveCaches == 'true')
+        uses: actions/cache/save@v3
+        with:
+          path: Library
+          key: ${{ runner.os }}-Library-${{ matrix.targetPlatform }}-${{ steps.set-build-version.outputs.buildVersion }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-Library-${{ matrix.targetPlatform }}
+            ${{ runner.os }}-Library
+          
+      - name: Save "everything else" cache 💾
+        id: cache-save-everything-else
+        if: success() || (github.event_name == 'workflow_dispatch' && github.event.inputs.alwaysSaveCaches == 'true')
+        uses: actions/cache/save@v3
+        with:
+#          path: |
+#              Temp
+#              Builds
+#              build
+#              obj
+#              *.csproj
+          path: |
+            Temp
+            obj
+            *.csproj
+          key: ${{ runner.os }}-EverythingElse-${{ matrix.targetPlatform }}-${{ steps.set-build-version.outputs.buildVersion }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-EverythingElse-${{ matrix.targetPlatform }}
+            ${{ runner.os }}-EverythingElse
+      # ^ Save Unity caches ^ -------------------------------
+
+  release:
+    name: Release 🎁
+    runs-on: ubuntu-latest
+#    needs: [check_prod,build]
+    needs: [check_branch,build]
+    if: (github.event_name == 'schedule') || (github.event_name == 'workflow_dispatch' && github.event.inputs.release == 'true')
+#    permissions:
+#      packages: write
+#      deployments: write
+    steps:
+      - name: Download build artifacts ⬇
+        uses: actions/download-artifact@v3
+
+      - name: Display structure of downloaded files
+        run: |
+          pwd
+          ls -R
+          
+      - name: Zip builds
+        id: zip-builds
+        run: |
+          for f in *; do
+            if [ -d "$f" ]; then
+              # Will not run if no directories are available
+              echo "$f"
+              cd $f
+              zip -r "../${f}.zip" .
+              cd ..
+            fi
+          done
+        
+#      - name: Determine release tag
+#        id: set-tag
+#        run: |
+#          VERSION_REGEX="^[0-9]+\.[0-9]+"
+#          MAJOR_MINOR_VERSION=$(echo ${{ needs.build.outputs.buildVersion }} | grep -oP "$VERSION_REGEX")
+#          echo "$MAJOR_MINOR_VERSION"
+#          # TAG="v$MAJOR_MINOR_VERSION-Latest"
+#          TAG="latest"
+#          echo "$TAG"
+#          echo "tag=$TAG" >> $GITHUB_OUTPUT
+#          echo "majorMinorVersion=$MAJOR_MINOR_VERSION" >> $GITHUB_OUTPUT
+      
+      - name: Try delete previous release
+        uses: dev-drprasad/delete-tag-and-release@v1.0
+        continue-on-error: true
+        with:
+          tag_name: ${{ needs.check_branch.outputs.release_tag }} #(required) tag name to delete
+          github_token: ${{ secrets.GITHUB_TOKEN }} # (required) a GitHub token with write access to the repo that needs to be modified
+          delete_release: true #(optional) default: true
+          
+      - name: Set release params
+        id: set_release_params
+        run: |
+          if [ ${{ github.ref }} == 'refs/heads/main' ]; then
+            GENERATE_RELEASE_NOTES="true"
+          else
+            GENERATE_RELEASE_NOTES="false"
+          fi
+          echo $GENERATE_RELEASE_NOTES
+          echo "generate_release_notes=$GENERATE_RELEASE_NOTES" >> $GITHUB_OUTPUT
+      
+      - name: Release 📦
+        uses: softprops/action-gh-release@v1
+        with:
+#          tag_name: ${{ steps.set-tag.outputs.tag }}
+          target_commitish: ${{ github.sha }}
+          tag_name: ${{ needs.check_branch.outputs.release_tag }}
+          name: "${{ needs.check_branch.outputs.release_tag }} (unstable)"
+          prerelease: true
+          draft: false
+          generate_release_notes: ${{ steps.set_release_params.outputs.generate_release_notes }}
+          files: |
+            *.zip
