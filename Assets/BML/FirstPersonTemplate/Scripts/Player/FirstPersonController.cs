@@ -12,8 +12,10 @@ namespace Player
     {
 	    [Tooltip("Move speed of the character in m/s")]
         [SerializeField, FoldoutGroup("Player")] protected float _moveSpeed = 4.0f;
+	    [Tooltip("Is Sprint Enabled?")]
+	    [SerializeField, FoldoutGroup("Player")] protected bool _sprintEnabled;
 		[Tooltip("Sprint speed of the character in m/s")]
-		[SerializeField, FoldoutGroup("Player")] protected float _sprintSpeed = 6.0f;
+		[SerializeField, FoldoutGroup("Player"), ShowIf("_sprintEnabled")] protected float _sprintSpeed = 6.0f;
 		[Tooltip("Rotation speed of the character")]
 		[SerializeField, FoldoutGroup("Player")] protected float _rotationSpeed = 1.0f;
 		[Tooltip("Acceleration and deceleration")]
@@ -156,7 +158,7 @@ namespace Player
 		    sprinting = _input.sprint;
 
 		    // set target speed based on move speed, sprint speed and if sprint is pressed
-		    float targetSpeed = sprinting ? _sprintSpeed : _moveSpeed;
+		    float targetSpeed = _sprintEnabled && sprinting ? _sprintSpeed : _moveSpeed;
 		    targetSpeed *= _isCaffeinated.Value ? _caffeineMoveSpeedMultiplier : 1f;
 
 		    // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
