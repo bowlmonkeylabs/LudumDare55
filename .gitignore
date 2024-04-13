@@ -72,3 +72,6 @@ ProjectSettings/Packages/com.unity.progrids/[Ss]ettings.json
 # Project bash environment
 .env.sh
 .REINSTALL-ENV.sh
+
+# MudBun
+/Assets/MudBun
