@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using Micosmo.SensorToolkit;
+using MoreMountains.Feedbacks;
 
 namespace Player
 {
@@ -26,9 +27,13 @@ namespace Player
         [SerializeField, FoldoutGroup("Vacuum")] protected LOSSensor _vacuumSensor;
         [SerializeField, FoldoutGroup("Vacuum")] protected int _vacuumDamage = 1;
         [SerializeField, FoldoutGroup("Vacuum")] protected float _vacuumHitDelay = .2f;
+        [SerializeField, FoldoutGroup("Vacuum")] protected MMF_Player _startVacuumFeedbacks;
+        [SerializeField, FoldoutGroup("Vacuum")] protected MMF_Player _stopVacuumFeedbacks;
         
         [SerializeField, FoldoutGroup("Spray")] protected LOSSensor _spraySensor;
         [SerializeField, FoldoutGroup("Spray")] protected int _sprayDamage = 1;
+        [SerializeField, FoldoutGroup("Spray")] protected MMF_Player _sprayFeedbacks;
+
 
         [SerializeField, FoldoutGroup("Caffeine")] protected BoolReference _isCaffeineUnlocked; 
         [SerializeField, FoldoutGroup("Caffeine")] protected BoolReference _isCaffeinated;
@@ -83,6 +88,12 @@ namespace Player
             if (_isPlayerInputDisabled.Value) return;
             
             vacuuming = value.isPressed;
+            
+            if (vacuuming) 
+                _startVacuumFeedbacks.PlayFeedbacks();
+            else 
+                _stopVacuumFeedbacks.PlayFeedbacks();
+            
             Debug.Log($"OnPrimary: {value.isPressed}");
         }
         
@@ -177,6 +188,7 @@ namespace Player
                 (DamageType.Spray, _sprayDamage,
                     (d.transform.position - transform.position).normalized))
             );
+            _sprayFeedbacks.PlayFeedbacks();
             Debug.Log($"Sprayed {sprayDetections.Count}");
         }
 
