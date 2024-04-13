@@ -27,17 +27,22 @@ namespace BML.Scripts {
                     var damageRemaining = damageResult.Damage;
                     bool damagedTempHealth = false;
 
-                    if (healthTemporary != null)
+                    if (healthTemporary != null && !healthTemporary.IsDead)
                     {
                         var tempHealthDamage = Math.Min(damageRemaining, healthTemporary.Value);
-                        damagedTempHealth = healthTemporary.Damage(tempHealthDamage);
+                        damagedTempHealth = healthTemporary.Damage(tempHealthDamage, damageResult.DamageType);
                         if (damagedTempHealth)
                         {
                             damageRemaining -= tempHealthDamage;
                         }
+                        else
+                        {
+                            di.OnFailDamage.Invoke(hitInfo);
+                            continue;
+                        }
                     }
 
-                    bool dealtDamageToMainHealth = health.Damage(damageRemaining, damagedTempHealth);
+                    bool dealtDamageToMainHealth = health.Damage(damageRemaining, damageResult.DamageType, damagedTempHealth);
                     if (!dealtDamageToMainHealth && !damagedTempHealth)
                     {
                         di.OnFailDamage.Invoke(hitInfo);

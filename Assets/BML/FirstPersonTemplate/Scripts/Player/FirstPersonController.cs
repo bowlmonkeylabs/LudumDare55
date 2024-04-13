@@ -128,7 +128,7 @@ namespace Player
 
 		#endregion
 		
-			#region Kinematic Character Controller
+	    #region Kinematic Character Controller
 
 		public void BeforeCharacterUpdate(float deltaTime)
 	    {

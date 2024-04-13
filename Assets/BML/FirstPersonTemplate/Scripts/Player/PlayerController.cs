@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using BML.ScriptableObjectCore.Scripts.Variables;
 using BML.Scripts;
 using BML.Scripts.UI;
@@ -7,6 +8,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using Micosmo.SensorToolkit;
 
 namespace Player
 {
@@ -20,6 +22,13 @@ namespace Player
         [SerializeField, FoldoutGroup("Interact")] protected LayerMask _interactMask;
         [SerializeField, FoldoutGroup("Interact")] protected TMP_Text _hoverText;
         [SerializeField, FoldoutGroup("Interact")] protected float _hoverUpdateDelay = .1f;
+        
+        [SerializeField, FoldoutGroup("Vacuum")] protected LOSSensor _vacuumSensor;
+        [SerializeField, FoldoutGroup("Vacuum")] protected int _vacuumDamage = 1;
+        [SerializeField, FoldoutGroup("Vacuum")] protected float _vacuumHitDelay = .2f;
+        
+        [SerializeField, FoldoutGroup("Spray")] protected LOSSensor _spraySensor;
+        [SerializeField, FoldoutGroup("Spray")] protected int _sprayDamage = 1;
 
         [SerializeField, FoldoutGroup("Caffeine")] protected BoolReference _isCaffeineUnlocked; 
         [SerializeField, FoldoutGroup("Caffeine")] protected BoolReference _isCaffeinated;
@@ -28,6 +37,8 @@ namespace Player
         [SerializeField, FoldoutGroup("Caffeine")] protected BoolReference _outputShowCaffeineAvailable;
 
         private float lastHoverUpdateTime = Mathf.NegativeInfinity;
+        private float lastVacuumTime = Mathf.NegativeInfinity;
+        private bool vacuuming;
         
         #region Unity Lifecycle
 
@@ -50,6 +61,8 @@ namespace Player
             {
                 CheckHover();
             }
+
+            if (vacuuming) TryVacuum();
         }
 
         protected virtual void FixedUpdate()
@@ -66,6 +79,22 @@ namespace Player
         #region Input Callback
 
         protected virtual void OnPrimary(InputValue value)
+        {
+            if (_isPlayerInputDisabled.Value) return;
+            
+            vacuuming = value.isPressed;
+            Debug.Log($"OnPrimary: {value.isPressed}");
+        }
+        
+        protected virtual void OnSecondary(InputValue value)
+        {
+            if (_isPlayerInputDisabled.Value) return;
+            if (!value.isPressed) return;
+            
+            TrySpray();
+        }
+        
+        protected virtual void OnInteract(InputValue value)
         {
             if (_isPlayerInputDisabled.Value) return;
             if (!value.isPressed) return;
@@ -115,6 +144,40 @@ namespace Player
             }
 
             lastHoverUpdateTime = Time.time;
+        }
+
+        #endregion
+        
+        #region Vacuum
+
+        private List<Damageable>  vacuumDetections = new List<Damageable>();
+        private void TryVacuum()
+        {
+            if (Time.time - lastVacuumTime < _vacuumHitDelay) return;
+            
+            lastVacuumTime = Time.time;
+            _vacuumSensor.PulseAll();
+            _vacuumSensor.GetDetectedComponents(vacuumDetections);
+            vacuumDetections.ForEach(d => d.TakeDamage(new HitInfo
+                (DamageType.Vacuum, _vacuumDamage,
+                    (d.transform.position - transform.position).normalized))
+            );
+        }
+
+        #endregion
+
+        #region Spray
+
+        private List<Damageable>  sprayDetections = new List<Damageable>();
+        private void TrySpray()
+        {
+            _spraySensor.PulseAll();
+            _spraySensor.GetDetectedComponents(sprayDetections);
+            sprayDetections.ForEach(d => d.TakeDamage(new HitInfo
+                (DamageType.Spray, _sprayDamage,
+                    (d.transform.position - transform.position).normalized))
+            );
+            Debug.Log($"Sprayed {sprayDetections.Count}");
         }
 
         #endregion

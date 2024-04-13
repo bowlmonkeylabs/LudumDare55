@@ -1,14 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using BML.ScriptableObjectCore.Scripts.Variables;
 using BML.ScriptableObjectCore.Scripts.Variables.SafeValueReferences;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace BML.Scripts {
+namespace BML.Scripts
+{
     public class Health : MonoBehaviour
     {
+
         #region Inspector
         [SerializeField] private bool _useHealthVariable = false;
         [SerializeField, ShowIf("_useHealthVariable")] [LabelText("Health")] private IntVariable _healthReference;
@@ -17,6 +21,7 @@ namespace BML.Scripts {
         [SerializeField] private bool _hasMaxHealth = false;
         [SerializeField, ShowIf("_hasMaxHealth")] private SafeIntValueReference _maxHealthReference;
 
+        [SerializeField] private DamageType _damageTypeMask;
         [SerializeField] private bool _isInvincible = false;
         [SerializeField] private bool _useInvincibilityVariable;
         [SerializeField, ShowIf("_useInvincibilityVariable")] private TimerReference _invincibilityTimer;
@@ -24,9 +29,9 @@ namespace BML.Scripts {
         [ShowInInspector, ReadOnly] private bool _isInvincibleFrames = false;
         
         [SerializeField] private UnityEvent<int, int> _onHealthChange;
-        // [SerializeField] private UnityEvent<HitInfo> _onTakeDamageHitInfo;
+        [SerializeField] private UnityEvent<HitInfo> _onTakeDamageHitInfo;
         [SerializeField] private UnityEvent _onTakeDamage;
-        // [SerializeField] private UnityEvent<HitInfo> _onDeathHitInfo;
+        [SerializeField] private UnityEvent<HitInfo> _onDeathHitInfo;
         [SerializeField] private UnityEvent _onDeath;
         [SerializeField] private UnityEvent _onRevive;
         #endregion
@@ -135,9 +140,12 @@ namespace BML.Scripts {
             SetInvincibleFrames(false);
         }
 
-        public bool Damage(int amount, bool ignoreInvincibility)
+        public bool Damage(int amount, DamageType damageType, bool ignoreInvincibility)
         {
+            Debug.Log($"{name} received {amount} damage from {damageType}");
             if (IsDead || (IsInvincible && !ignoreInvincibility) || amount == 0) return false;
+
+            if ((_damageTypeMask & damageType) == 0) return false;
             
             lastDamageTime = Time.time;
 
@@ -149,32 +157,30 @@ namespace BML.Scripts {
             else
                 StartCoroutine(InvincibilityTimer());
             
-            // return this.SetHealth(Value - amount, null) < 0;
-            return this.SetHealth(Value - amount) < 0;
+            return this.SetHealth(Value - amount, null) < 0;
         }
         
-        public bool Damage(int amount)
+        public bool Damage(int amount, DamageType damageType)
         {
-            return Damage(amount, false);
+            return Damage(amount, damageType, false);
         }
         
-        // public bool Damage(HitInfo hitInfo)
-        // {
-        //     if (IsDead || IsInvincible || hitInfo.Damage == 0) return false;
+        public bool Damage(HitInfo hitInfo)
+        {
+            if (IsDead || IsInvincible || hitInfo.Damage == 0) return false;
             
-        //     lastDamageTime = Time.time;
-        //     StartCoroutine(InvincibilityTimer());
+            lastDamageTime = Time.time;
+            StartCoroutine(InvincibilityTimer());
 
-        //     return this.SetHealth(Value - hitInfo.Damage, hitInfo) < 0;
-        // }
+            return this.SetHealth(Value - hitInfo.Damage, hitInfo) < 0;
+        }
 
-        // private HitInfo _cachedHitInfo;
-        // , HitInfo hitInfo = null
-        public int SetHealth(int newValue)
+        private HitInfo _cachedHitInfo;
+        public int SetHealth(int newValue, HitInfo hitInfo = null)
         {
             newValue = Mathf.Clamp(newValue, 0, MaxHealth);
 
-            // _cachedHitInfo = hitInfo;
+            _cachedHitInfo = hitInfo;
 
             var oldValue = Value;
             _value = newValue;
@@ -186,7 +192,7 @@ namespace BML.Scripts {
                 AfterHealthValueChanged(oldValue, _value);
             }
 
-            // _cachedHitInfo = null;
+            _cachedHitInfo = null;
 
             return delta;
         }
@@ -234,19 +240,19 @@ namespace BML.Scripts {
 
         #endregion
         
-        // private void Death(HitInfo hitInfo)
-        // {
-        //     _onDeathHitInfo.Invoke(hitInfo);
-        //     _onDeath.Invoke();
-        //     OnDeath?.Invoke();
-        // }
+        private void Death(HitInfo hitInfo)
+        {
+            _onDeathHitInfo.Invoke(hitInfo);
+            _onDeath.Invoke();
+            OnDeath?.Invoke();
+        }
 
         private void AfterHealthValueChanged(int previousValue, int currentValue)
         {
             int delta = currentValue - previousValue;
             if (delta < 0)
             {
-                // _onTakeDamageHitInfo?.Invoke(null);
+                _onTakeDamageHitInfo?.Invoke(null);
                 _onTakeDamage?.Invoke();
             }
             if (previousValue <= 0 && currentValue > 0)
@@ -259,10 +265,9 @@ namespace BML.Scripts {
             
             if (currentValue <= 0)
             {
-                // Death(_cachedHitInfo);
+                Death(_cachedHitInfo);
             }
             
         }
     }
 }
-
