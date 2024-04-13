@@ -217,8 +217,8 @@ namespace BML.ScriptableObjectCore.Scripts.Variables.SafeValueReferences
                             ReferenceValue_FloatVariable.Value = value;
                         break;
                     case FloatReferenceTypes.IntVariable:
-                        if (ReferenceValue_FloatVariable != null)
-                            ReferenceValue_FloatVariable.Value = Mathf.FloorToInt(value);
+                        if (ReferenceValue_IntVariable != null)
+                            ReferenceValue_IntVariable.Value = Mathf.FloorToInt(value);
                         break;
                     case FloatReferenceTypes.EvaluateCurveVariable:
                         // if (ReferenceValue_EvaluateCurveVariable != null)
@@ -237,6 +237,12 @@ namespace BML.ScriptableObjectCore.Scripts.Variables.SafeValueReferences
                         break;
                 }
             }
+        }
+
+        public void SetConstantValue(float value)
+        {
+            this.ReferenceTypeSelector = FloatReferenceTypes.Constant;
+            this.ConstantValue = value;
         }
 
         public String Name

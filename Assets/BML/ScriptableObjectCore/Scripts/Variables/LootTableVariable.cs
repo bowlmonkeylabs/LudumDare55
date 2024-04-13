@@ -10,19 +10,35 @@ using UnityEngine.Events;
 
 namespace BML.ScriptableObjectCore.Scripts.Variables
 {
-    [Flags]
     public enum LootTableKey
     {
         Nothing = 0,
-        Health = 1 << 0,
-        Health2 = 1 << 1,
-        CommonOre = 1 << 2,
-        CommonOre2 = 1 << 3,
-        RareOre = 1 << 4,
+        CommonOre = 1,
+        CommonOre2 = 2,
+        RareOre = 3,
+        RareOre2 = 4,
+        
+        Health = 10,
+        Health2 = 11,
+        Health3 = 12,
+        
+        Bomb = 15,
+        Bomb2 = 16,
+        
+        Consumable = 20,
+        Consumable2 = 21,
+        Consumable3 = 22,
+        Consumable4 = 23,
+        Consumable5 = 24,
+        Consumable6 = 25,
+        Consumable7 = 26,
+        Consumable8 = 27,
+        Consumable9 = 28,
+        Consumable10 = 29,
     }
     
     [Serializable]
-    public struct LootTableEntry : ICloneable
+    public struct LootTableEntry<TKey, TValue> : ICloneable
     {
         [OnValueChanged("ClearEntryIfKeyIsNothing")]
         [HideLabel]
@@ -32,27 +48,27 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
         {
             if (this.Key == LootTableKey.Nothing)
             {
-                DropPrefabs = null;
+                Drops = null;
             }
         }
-        
+
         [InlineProperty, AssetsOnly]
         [ListDrawerSettings(Expanded = true)]
-        [InfoBox("Empty", visibleIfMemberName: "@DropPrefabs.Length == 0 && Key != LootTableKey.Nothing", infoMessageType: InfoMessageType.Warning)]
-        [InfoBox("Not empty?", visibleIfMemberName: "@DropPrefabs.Length > 0 && Key == LootTableKey.Nothing", infoMessageType: InfoMessageType.Warning)]
+        [InfoBox("Empty", visibleIfMemberName: "@Drops.Length == 0 && Key != LootTableKey.Nothing", infoMessageType: InfoMessageType.Warning)]
+        [InfoBox("Not empty?", visibleIfMemberName: "@Drops.Length > 0 && Key == LootTableKey.Nothing", infoMessageType: InfoMessageType.Warning)]
         [HideIf("@Key == LootTableKey.Nothing")]
-        public GameObject[] DropPrefabs;
+        public TValue[] Drops;
 
         public object Clone()
         {
-            var clone = (LootTableEntry)this.MemberwiseClone();
-            clone.DropPrefabs = (GameObject[])this.DropPrefabs?.Clone();
+            var clone = (LootTableEntry<TKey, TValue>)this.MemberwiseClone();
+            clone.Drops = (TValue[])this.Drops?.Clone();
             return clone;
         }
     }
 
     [Serializable]
-    public class LootTable : ICloneable
+    public class LootTable<TKey, TValue> : ICloneable
     {
         [ShowInInspector, ShowIf("@_duplicateKeys.Length > 0")]
         [InfoBox("", InfoMessageType.Error, visibleIfMemberName:"@_duplicateKeys.Length > 0")]
@@ -60,16 +76,16 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
             .Where(group => group.Count() >= 2).Select(group => group.Key).ToArray();
         
         [SerializeField, InlineProperty, HideLabel]
-        public WeightedReferenceOptions<LootTableEntry> Entries;
+        public WeightedReferenceOptions<LootTableEntry<TKey, TValue>> Entries;
 
         public object Clone()
         {
-            var clone = (LootTable)this.MemberwiseClone();
-            clone.Entries = (WeightedReferenceOptions<LootTableEntry>)Entries.Clone();
+            var clone = (LootTable<TKey, TValue>)this.MemberwiseClone();
+            clone.Entries = (WeightedReferenceOptions<LootTableEntry<TKey, TValue>>)Entries.Clone();
             return clone;
         }
 
-        public LootTableEntry Evaluate(float randomRoll)
+        public LootTableEntry<TKey, TValue> Evaluate(float randomRoll)
         {
             return Entries.RandomWithWeights(randomRoll);
         }
@@ -106,7 +122,7 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
     
     [Required]
     [CreateAssetMenu(fileName = "LootTableVariable", menuName = "BML/Variables/LootTableVariable", order = 0)]
-    public class LootTableVariable : ReferenceTypeVariable<LootTable>
+    public class LootTableVariable : ReferenceTypeVariable<LootTable<LootTableKey, GameObject>>
     {
         public string GetName() => name;
         public string GetDescription() => Description;
@@ -114,5 +130,5 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
     
     [Serializable]
     [InlineProperty]
-    public class LootTableReference : Reference<LootTable, LootTableVariable> { }
+    public class LootTableReference : Reference<LootTable<LootTableKey, GameObject>, LootTableVariable> { }
 }

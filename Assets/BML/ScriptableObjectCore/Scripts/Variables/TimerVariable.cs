@@ -12,6 +12,7 @@ using UnityEngine.Serialization;
 namespace BML.ScriptableObjectCore.Scripts.Variables
 {
     public delegate void OnUpdate_();
+    public delegate void OnStarted_();
     public delegate void OnFinished_();
 
     [Required]
@@ -26,6 +27,9 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
             VariableContainer.PopulateAllRelatedContainers(includeInContainers);
         }
 #endif
+
+        [SerializeField] private bool _enableLogs;
+        
         private Color _colorIncludeInContainers => includeInContainers != VariableContainerKey.None ? Color.green : Color.white;
         [OnValueChanged("OnIncludeInContainersChanged")]
         [SerializeField, HideInInlineEditors, GUIColor("_colorIncludeInContainers")] private VariableContainerKey includeInContainers;
@@ -44,6 +48,7 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
         [TextArea (7, 10)] [HideInInlineEditors] public String Description;
         
         public event OnUpdate_ OnUpdate;
+        public event OnStarted_ OnStarted;
         public event OnFinished_ OnFinished;
 
         // public float Duration => duration;
@@ -58,6 +63,12 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
         [ShowInInspector, ReadOnly]
         public bool IsStarted => isStarted;
 
+        [ShowInInspector, ReadOnly]
+        public bool IsActive => isStarted && !isFinished;
+
+        [ShowInInspector, ReadOnly]
+        public bool IsPaused => IsActive && isStopped;
+
         [NonSerialized]
         private float startTime = Mathf.NegativeInfinity;
         
@@ -70,19 +81,43 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
         [NonSerialized] 
         private bool isStarted = false;
 
+        /// <summary>
+        /// Start timer from where it left off.
+        /// </summary>
         public void StartTimer()
         {
+            if (_enableLogs) Debug.Log($"StartTimer ({this.name}) (IsAlreadyStarted? {isStarted}) (IsAlreadyStopped? {isStopped}) (IsAlreadyFinished? {isFinished}) (LastUpdateTime {lastUpdateTime})");
+            isStopped = false;
+            if (!isStarted)
+            {
+                isStarted = true;
+                remainingTime = Duration;
+                startTime = Time.time;
+            }
+            lastUpdateTime = Time.time;
+            OnStarted?.Invoke();
+            OnUpdate?.Invoke();
+        }
+
+        /// <summary>
+        /// Start timer from the beginning.
+        /// </summary>
+        public void RestartTimer()
+        {
+            if (_enableLogs) Debug.Log($"RestartTimer ({this.name}) (IsAlreadyStarted? {isStarted}) (IsAlreadyStopped? {isStopped}) (IsAlreadyFinished? {isFinished}) (LastUpdateTime {lastUpdateTime})");
             isStarted = true;
             isStopped = false;
             isFinished = false;
             startTime = Time.time;
             lastUpdateTime = startTime;
             remainingTime = Duration;
+            OnStarted?.Invoke();
             OnUpdate?.Invoke();
         }
-
+        
         public void ResetTimer()
         {
+            if (_enableLogs) Debug.Log($"ResetTimer ({this.name}) (IsAlreadyStarted? {isStarted}) (IsAlreadyStopped? {isStopped}) (IsAlreadyFinished? {isFinished}) (LastUpdateTime {lastUpdateTime})");
             isStarted = false;
             isStopped = true;
             isFinished = false;
@@ -94,7 +129,18 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
 
         public void StopTimer()
         {
+            if (_enableLogs) Debug.Log($"StopTimer ({this.name}) (IsAlreadyStarted? {isStarted}) (IsAlreadyStopped? {isStopped}) (IsAlreadyFinished? {isFinished}) (LastUpdateTime {lastUpdateTime})");
             isStopped = true;
+        }
+
+        public void AddTime(float addSeconds, bool overrideDuration = true)
+        {
+            this.remainingTime += addSeconds;
+            if(!overrideDuration && this.remainingTime > Duration) {
+                this.remainingTime = Duration;
+            }
+            if (_enableLogs) Debug.Log($"AddTime ({this.name}) (Add {addSeconds}) (Remaining {remainingTime}s) (LastUpdateTime {lastUpdateTime})");
+            OnUpdate?.Invoke();
         }
 
         public void Subscribe(OnUpdate_ callback)
@@ -105,6 +151,16 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
         public void Unsubscribe(OnUpdate_ callback)
         {
             this.OnUpdate -= callback;
+        }
+        
+        public void SubscribeStarted(OnStarted_ callback)
+        {
+            this.OnStarted += callback;
+        }
+
+        public void UnsubscribeStarted(OnStarted_ callback)
+        {
+            this.OnStarted -= callback;
         }
         
         public void SubscribeFinished(OnFinished_ callback)
@@ -123,11 +179,13 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
             {
                 var updateTime = Time.time;
                 var deltaTime = (updateTime - lastUpdateTime);
+                var lastLastUpdateTime = lastUpdateTime;
                 lastUpdateTime = updateTime;
                 
                 remainingTime -= deltaTime * multiplier;
                 remainingTime = Mathf.Max(0f, remainingTime.Value);
 
+                if (_enableLogs) Debug.Log($"UpdateTime ({this.name}) (Time {updateTime}) (Delta {deltaTime}) (LastUpdateTime {lastUpdateTime}) (Remaining {remainingTime})");
                 OnUpdate?.Invoke();
                 if (remainingTime == 0)
                 {
@@ -184,7 +242,7 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
         public bool IsStopped => (UseConstant) ? isConstantStopped : Variable.IsStopped;
 
         [BoxGroup("Split/Right", ShowLabel = false)] [HideLabel] [HideIf("UseConstant")] 
-        [SerializeField] private TimerVariable Variable;
+        [SerializeField] public TimerVariable Variable;
 
         private float startTime = Mathf.NegativeInfinity;
         private float lastUpdateTime = Mathf.NegativeInfinity;
@@ -261,10 +319,22 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
             }
         }
 
+        public void StartTimer()
+        {
+            Variable?.StartTimer();
+            isConstantStopped = false;
+            if (!isConstantStarted)
+            {
+                isConstantStarted = true;
+                ConstantRemainingTime = Duration;
+                startTime = Time.time;
+            }
+            lastUpdateTime = Time.time;
+        }
 
         public void RestartTimer()
         {
-            Variable?.StartTimer();
+            Variable?.RestartTimer();
             isConstantStarted = true;
             isConstantStopped = false;
             isConstantFinished = false;
@@ -318,6 +388,16 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
         public void Unsubscribe(OnUpdate_ callback)
         {
             Variable?.Unsubscribe(callback);
+        }
+        
+        public void SubscribeStarted(OnStarted_ callback)
+        {
+            Variable?.SubscribeStarted(callback);
+        }
+
+        public void UnsubscribeStarted(OnStarted_ callback)
+        {
+            Variable?.UnsubscribeStarted(callback);
         }
         
         public void SubscribeFinished(OnFinished_ callback)

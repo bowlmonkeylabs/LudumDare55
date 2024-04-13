@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +26,14 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
         Subtract,
         Multiply,
         Divide,
+        Equal,
+        NotEqual,
+        LessThan,
+        LessThanOrEqual,
+        GreaterThan,
+        GreaterThanOrEqual,
+        Min,
+        Max,
     }
 
     internal static class FunctionVariableOperatorsExtensions
@@ -39,6 +47,14 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
         private static float Subtract(float a, float b) => a - b;
         private static float Multiply(float a, float b) => a * b;
         private static float Divide(float a, float b) => a / b;
+        private static float Equal(float a, float b) => Mathf.Approximately(a, b) ? 1f : 0f;
+        private static float NotEqual(float a, float b) => !Mathf.Approximately(a, b) ? 1f : 0f;
+        private static float LessThan(float a, float b) => a < b ? 1f : 0f;
+        private static float LessThanOrEqual(float a, float b) => a <= b ? 1f : 0f;
+        private static float GreaterThan(float a, float b) => a > b ? 1f : 0f;
+        private static float GreaterThanOrEqual(float a, float b) => a >= b ? 1f : 0f;
+        private static float Min(float a, float b) => Mathf.Min(a, b);
+        private static float Max(float a, float b) => Mathf.Max(a, b);
         
         private static Dictionary<FunctionVariableOperators, Operator> OperatorToFunction = new Dictionary<FunctionVariableOperators,Operator>
         {
@@ -46,6 +62,14 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
             {FunctionVariableOperators.Subtract, Subtract},
             {FunctionVariableOperators.Multiply, Multiply},
             {FunctionVariableOperators.Divide, Divide},
+            {FunctionVariableOperators.Equal, Equal},
+            {FunctionVariableOperators.NotEqual, NotEqual},
+            {FunctionVariableOperators.LessThan, LessThan},
+            {FunctionVariableOperators.LessThanOrEqual, LessThanOrEqual},
+            {FunctionVariableOperators.GreaterThan, GreaterThan},
+            {FunctionVariableOperators.GreaterThanOrEqual, GreaterThanOrEqual},
+            {FunctionVariableOperators.Min, Min},
+            {FunctionVariableOperators.Max, Max},
         };
         
         private static Dictionary<FunctionVariableOperators, string> OperatorToString = new Dictionary<FunctionVariableOperators, string>
@@ -54,6 +78,14 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
             {FunctionVariableOperators.Subtract, "-"},
             {FunctionVariableOperators.Multiply, "*"},
             {FunctionVariableOperators.Divide, "/"},
+            {FunctionVariableOperators.Equal, "=="},
+            {FunctionVariableOperators.NotEqual, "!="},
+            {FunctionVariableOperators.LessThan, "<"},
+            {FunctionVariableOperators.LessThanOrEqual, "<="},
+            {FunctionVariableOperators.GreaterThan, ">"},
+            {FunctionVariableOperators.GreaterThanOrEqual, ">="},
+            {FunctionVariableOperators.Min, "MIN"},
+            {FunctionVariableOperators.Max, "MAX"},
         };
     }
     
@@ -87,6 +119,9 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
 
 #region Interface
 
+        public delegate void OnUpdateDelta(float previousValue, float currentValue);
+        protected event OnUpdateDelta _OnUpdateDelta;
+
         public float Value => _result;
 
         public string GetName() => name;
@@ -98,10 +133,19 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
         {
             this.OnUpdate += callback;
         }
+        public void Subscribe(OnUpdateDelta callback)
+        {
+            this._OnUpdateDelta += callback;
+        }
 
         public void Unsubscribe(OnUpdate callback)
         {
             this.OnUpdate -= callback;
+        }
+        
+        public void Unsubscribe(OnUpdateDelta callback)
+        {
+            this._OnUpdateDelta -= callback;
         }
         
         public bool Save(string folderPath, string name = "")
@@ -127,12 +171,14 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
         [Button]
         private void Recalculate()
         {
+            var _prev = _result;
             _result = Operations.Aggregate(0f, (accumulator, op) =>
             {
                 var operation = op.op.AsFunction();
                 return operation(accumulator, op.value.Value);
             });
             OnUpdate?.Invoke();
+            _OnUpdateDelta?.Invoke(_prev, _result);
         }
 
         private string Equation
