@@ -20,7 +20,7 @@ MonoBehaviour:
   m_startupScene: 
   m_loadingScreen: 
   m_splashScreen: 
-  m_useDefaultPauseScreen: 1
+  m_useDefaultPauseScreen: 0
   m_includeFadeLoadingScene: 1
   m_standalone: []
   m_startupLoadingScreen: 
@@ -30,7 +30,7 @@ MonoBehaviour:
     m_throw: 1
     m_keys: []
     m_values: []
-  m_createCameraDuringStartup: 1
+  m_createCameraDuringStartup: 0
   m_unloadUnusedAssetsForStandalone: 1
   m_checkForDuplicateSceneOperations: 1
   m_preventSpammingEventMethods: 0
