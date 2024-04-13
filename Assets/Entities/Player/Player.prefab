@@ -976,7 +976,7 @@ MonoBehaviour:
   _interactCastRadius: 0.25
   _interactMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   _hoverText: {fileID: 3982905922588035829}
   _hoverUpdateDelay: 0.1
   _isCaffeineUnlocked:
