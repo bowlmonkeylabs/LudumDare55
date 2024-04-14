@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7043c523924cd2d45a74263baee0c32c, type: 3}
+  m_Name: Level_Task01
+  m_EditorClassIdentifier: 
+  m_path: Assets/Scenes/Level_Task01.unity
+  m_assetID: 3eebdec24ae03094eb1c18270da45456
+  m_isLoadingScreen: 0
+  m_isSplashScreen: 0

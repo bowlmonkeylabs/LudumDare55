@@ -15,6 +15,7 @@ MonoBehaviour:
   m_collections:
   - {fileID: 11400000, guid: 17941bbcd724df24aa1c83856972d2f7, type: 2}
   - {fileID: 11400000, guid: 5fbf1954a763e01469e489ee344cbff0, type: 2}
+  - {fileID: 11400000, guid: 3a98eadc967c13a49ad6346664427537, type: 2}
   - {fileID: 11400000, guid: 696c30170f88aa2408d8119c87590141, type: 2}
   m_removedCollections: []
   m_startupScene: 
