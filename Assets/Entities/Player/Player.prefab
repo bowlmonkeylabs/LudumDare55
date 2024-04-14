@@ -2680,6 +2680,8 @@ GameObject:
   - component: {fileID: 5587745930521238551}
   - component: {fileID: 6538267007885003990}
   - component: {fileID: 6538267007885003991}
+  - component: {fileID: 7334686890962222334}
+  - component: {fileID: 8764879544400031248}
   m_Layer: 3
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -3066,6 +3068,134 @@ MonoBehaviour:
   CheckMovementInitialOverlaps: 1
   KillVelocityWhenExceedMaxMovementIterations: 1
   KillRemainingMovementWhenExceedMaxMovementIterations: 1
+--- !u!114 &7334686890962222334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3635403697528235283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 501e7454a778d5d449b9245c9311d9ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _useHealthVariable: 0
+  _healthReference: {fileID: 0}
+  _health: 1
+  _hasMaxHealth: 0
+  _maxHealthReference:
+    ReferenceTypeSelector: 0
+    ConstantValue: 0
+    RoundingBehavior: 0
+    ReferenceValue_FloatVariable: {fileID: 0}
+    ReferenceValue_IntVariable: {fileID: 0}
+    ReferenceValue_BoolVariable: {fileID: 0}
+    ReferenceValue_FunctionVariable: {fileID: 0}
+    ReferenceValue_EvaluateCurveVariable: {fileID: 0}
+  _damageTypeMask: 0
+  _isInvincible: 0
+  _useInvincibilityVariable: 0
+  _invincibilityTimer:
+    UseConstant: 0
+    ConstantDuration:
+      ReferenceTypeSelector: 0
+      ConstantValue: 0
+      ReferenceValue_FloatVariable: {fileID: 0}
+      ReferenceValue_IntVariable: {fileID: 0}
+      ReferenceValue_EvaluateCurveVariable: {fileID: 0}
+      ReferenceValue_BoolVariable: {fileID: 0}
+      ReferenceValue_FunctionVariable: {fileID: 0}
+    Variable: {fileID: 0}
+  _invincibilitySeconds: 0
+  _onHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  _onTakeDamageHitInfo:
+    m_PersistentCalls:
+      m_Calls: []
+  _onTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDeathHitInfo:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 5c7a6f6b5e1da684dafad20ec050cea0, type: 2}
+        m_TargetAssemblyTypeName: BML.ScriptableObjectCore.Scripts.Events.GameEvent,
+          ScriptableObjectSystem
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onRevive:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8764879544400031248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3635403697528235283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67e137aa8f06bb5408f5de9b1c1564b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 7334686890962222334}
+  healthTemporary: {fileID: 0}
+  _damageable:
+  - _damageTypesPreview: EnemyDamage
+    _damageType: 4
+    _damageModifierType: 3
+    _damageMultiplier:
+      ReferenceTypeSelector: 0
+      ConstantValue: 1
+      RoundingBehavior: 0
+      ReferenceValue_FloatVariable: {fileID: 0}
+      ReferenceValue_IntVariable: {fileID: 0}
+      ReferenceValue_BoolVariable: {fileID: 0}
+      ReferenceValue_FunctionVariable: {fileID: 0}
+      ReferenceValue_EvaluateCurveVariable: {fileID: 0}
+    _damageResistance:
+      ReferenceTypeSelector: 0
+      ConstantValue: 0
+      RoundingBehavior: 0
+      ReferenceValue_FloatVariable: {fileID: 0}
+      ReferenceValue_IntVariable: {fileID: 0}
+      ReferenceValue_BoolVariable: {fileID: 0}
+      ReferenceValue_FunctionVariable: {fileID: 0}
+      ReferenceValue_EvaluateCurveVariable: {fileID: 0}
+    _damageOverride:
+      ReferenceTypeSelector: 0
+      ConstantValue: 0
+      RoundingBehavior: 0
+      ReferenceValue_FloatVariable: {fileID: 0}
+      ReferenceValue_IntVariable: {fileID: 0}
+      ReferenceValue_BoolVariable: {fileID: 0}
+      ReferenceValue_FunctionVariable: {fileID: 0}
+      ReferenceValue_EvaluateCurveVariable: {fileID: 0}
+    _onDamage:
+      m_PersistentCalls:
+        m_Calls: []
+    _onFailDamage:
+      m_PersistentCalls:
+        m_Calls: []
+    _onDeath:
+      m_PersistentCalls:
+        m_Calls: []
+  _onDamage:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3720986673042454151
 GameObject:
   m_ObjectHideFlags: 0
@@ -6520,13 +6650,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 941e7ab621c61244fb9e5d7b77f22489, type: 3}
---- !u!198 &198988519471062594 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6561601689877355442, guid: 941e7ab621c61244fb9e5d7b77f22489, type: 3}
-  m_PrefabInstance: {fileID: 6470985443118286320}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4384161318871002 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6467764617178683946, guid: 941e7ab621c61244fb9e5d7b77f22489, type: 3}
+  m_PrefabInstance: {fileID: 6470985443118286320}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &198988519471062594 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6561601689877355442, guid: 941e7ab621c61244fb9e5d7b77f22489, type: 3}
   m_PrefabInstance: {fileID: 6470985443118286320}
   m_PrefabAsset: {fileID: 0}

@@ -9,7 +9,8 @@ namespace BML.Scripts.UI
     public class UiTextTimerFormatter : MonoBehaviour
     {
         [SerializeField] private TMP_Text _text;
-        [SerializeField] private string _formatString = "D2";
+        [SerializeField] private string _minutesformatString = "D2";
+        [SerializeField] private string _secondsFormatString = "F2";
         [SerializeField] private TimerReference _variable;
         [FormerlySerializedAs("_timerValue")] [SerializeField] private TimerDisplayMode _timerDisplayMode;
 
@@ -54,7 +55,7 @@ namespace BML.Scripts.UI
         {
             int minutes = (int) seconds / 60;
             seconds %= 60;
-            return $"{minutes.ToString(_formatString)}:{seconds.ToString(_formatString)}";
+            return $"{minutes.ToString(_minutesformatString)}:{seconds.ToString(_secondsFormatString)}";
         }
 
         protected void UpdateText()

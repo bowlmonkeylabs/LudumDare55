@@ -362,7 +362,7 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 1
+        value: 2
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -404,8 +404,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 24
-        y: 25
+        x: 183
+        y: 69
         width: 160
         height: 30
     - id: 3
@@ -452,15 +452,15 @@ MonoBehaviour:
         destinationDialogueID: 7
         isConnector: 0
         priority: 2
-      conditionsString: Variable["TaskSucceed"] == false
+      conditionsString: (Variable["TaskSucceed"] == false)
       userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 351
-        y: 132
+        x: 382
+        y: 266
         width: 160
         height: 30
     - id: 4
@@ -514,8 +514,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 26
-        y: 132
+        x: 45
+        y: 241
         width: 160
         height: 30
     - id: 7
@@ -563,8 +563,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 175
-        y: 247
+        x: 254
+        y: 396
         width: 160
         height: 30
     entryGroups: []

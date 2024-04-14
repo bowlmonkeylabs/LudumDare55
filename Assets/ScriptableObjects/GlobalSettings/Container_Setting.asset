@@ -30,6 +30,7 @@ MonoBehaviour:
   Vector2Variables: []
   Vector3Variables: []
   QuaternionVariables: []
-  TimerVariables: []
+  TimerVariables:
+  - {fileID: 11400000, guid: 888e6e0101ff92d45ba22e4b18550ebf, type: 2}
   FunctionVariables: []
   LootTableVariables: []
