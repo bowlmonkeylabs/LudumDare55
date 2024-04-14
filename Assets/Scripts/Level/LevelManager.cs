@@ -33,7 +33,10 @@ namespace BML.Scripts.Level
 
         private void Start()
         {
-            _playerSceneRef.Value.GetComponent<KinematicCharacterMotor>().MoveCharacter(_summonPointSceneRef.Value.position);
+            Debug.Log("Teleporting player to summon point");
+            var kinematicCharacterMotor = _playerSceneRef.Value.GetComponent<KinematicCharacterMotor>();
+            kinematicCharacterMotor.SetPositionAndRotation(_summonPointSceneRef.Value.position, _summonPointSceneRef.Value.rotation);
+            
             DialogueLua.SetVariable("TaskSucceed", false);
             _levelTimer.RestartTimer();
         }

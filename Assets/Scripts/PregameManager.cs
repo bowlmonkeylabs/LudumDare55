@@ -41,7 +41,8 @@ namespace BML.Scripts
         
         private void Start()
         {
-            _playerSceneRef.Value.GetComponent<KinematicCharacterMotor>().MoveCharacter(_summonPointSceneRef.Value.position);
+            var kinematicCharacterMotor = _playerSceneRef.Value.GetComponent<KinematicCharacterMotor>();
+            kinematicCharacterMotor.SetPositionAndRotation(_summonPointSceneRef.Value.position, _summonPointSceneRef.Value.rotation);
             
             _dialogueActor.actor = _levelTasksDict.TryGetCurrentLevelTask()?.Actor;
             _dialogueSystemTrigger.conversation = GetPregameConversationTitle();
