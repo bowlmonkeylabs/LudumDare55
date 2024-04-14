@@ -1205,7 +1205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _useHealthVariable: 0
   _healthReference: {fileID: 0}
-  _health: 3
+  _health: 6
   _hasMaxHealth: 0
   _maxHealthReference:
     ReferenceTypeSelector: 0
