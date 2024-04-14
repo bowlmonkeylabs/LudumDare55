@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6167077562290295891}
   - component: {fileID: 2723767896975432006}
   m_Layer: 0
-  m_Name: '{LevelSceneReferenceManager}'
+  m_Name: '{PregameSceneReferenceManager}'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

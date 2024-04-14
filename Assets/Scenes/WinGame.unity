@@ -372,62 +372,10 @@ MonoBehaviour:
   conversationEvents:
     onConversationStart:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 11400000, guid: b3fc6813de3df8c43bd305906779b835, type: 2}
-          m_TargetAssemblyTypeName: BML.ScriptableObjectCore.Scripts.Variables.Variable`1[[System.Boolean,
-            mscorlib
-          m_MethodName: SetValue
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 11400000, guid: ebe1ecd80df93e442ab77e24b49f7e98, type: 2}
-          m_TargetAssemblyTypeName: BML.ScriptableObjectCore.Scripts.Events.DynamicGameEvent,
-            ScriptableObjectSystem
-          m_MethodName: Raise
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: UI
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
     onConversationEnd:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 11400000, guid: b3fc6813de3df8c43bd305906779b835, type: 2}
-          m_TargetAssemblyTypeName: BML.ScriptableObjectCore.Scripts.Variables.Variable`1[[System.Boolean,
-            mscorlib
-          m_MethodName: SetValue
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 11400000, guid: ebe1ecd80df93e442ab77e24b49f7e98, type: 2}
-          m_TargetAssemblyTypeName: BML.ScriptableObjectCore.Scripts.Events.DynamicGameEvent,
-            ScriptableObjectSystem
-          m_MethodName: Raise
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Player
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 1119747711}
           m_TargetAssemblyTypeName: BML.Scripts.PregameManager, BML.Scripts
           m_MethodName: OnStartTask
@@ -611,6 +559,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c16c29c3f5bb4674b745da85c45cbf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentSceneLevel:
+    UseConstant: 0
+    EnableInstanceOptions: 0
+    InstanceName: 
+    InstancePath: IntermediateProperties
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: c001586ff22d97346aadc994d4268588, type: 2}
   _levelTasksDict: {fileID: 11400000, guid: 3015a914ec2689d49bad7ff26f94a182, type: 2}
   _dialogueActor: {fileID: 1119747710}
   _dialogueSystemTrigger: {fileID: 1119747709}

@@ -85,9 +85,7 @@ namespace Player
 
         protected virtual void OnPrimary(InputValue value)
         {
-            if (_isPlayerInputDisabled.Value) return;
-            
-            vacuuming = value.isPressed;
+            vacuuming = !_isPlayerInputDisabled.Value && value.isPressed;
             
             if (vacuuming) 
                 _startVacuumFeedbacks.PlayFeedbacks();

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b924d8347ab3dab468c142134ad59a03, type: 3}
-  m_Name: dev - Level Task 01
+  m_Name: dev - Win Game
   m_EditorClassIdentifier: 
   hasSetDefaultActiveScene: 0
   m_description: 
   m_scenes:
   - Assets/Scenes/MainGame.unity
-  - Assets/Scenes/Level_Task01.unity
+  - Assets/Scenes/WinGame.unity
   m_loadingScreenUsage: 1
   m_loadingScreen: 
   m_activeScene: 
@@ -27,8 +27,6 @@ MonoBehaviour:
   m_unloadUnusedAssets: 1
   m_tags:
     m_throw: 1
-    m_keys:
-    - Assets/Scenes/MainGame.unity
-    m_values:
-    - PersistIfPossible
-  m_title: Level Task 01
+    m_keys: []
+    m_values: []
+  m_title: Win Game

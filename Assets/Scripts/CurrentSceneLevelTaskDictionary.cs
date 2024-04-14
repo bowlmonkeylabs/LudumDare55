@@ -20,9 +20,9 @@ namespace BML.Scripts
 
         public Dictionary<int, LevelTask> LevelTasks = new Dictionary<int, LevelTask>();
         
-        public LevelTask GetCurrentLevelTask()
+        public LevelTask? TryGetCurrentLevelTask()
         {
-            return LevelTasks[_currentSceneLevel.Value];
+            return LevelTasks.TryGetValue(_currentSceneLevel.Value, out var task) ? (LevelTask?) task : null;
         }
         
         public LevelTask GetLevelTask(int level)
