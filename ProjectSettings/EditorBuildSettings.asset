@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level_Task01.unity
     guid: 3eebdec24ae03094eb1c18270da45456
+  - enabled: 1
+    path: Assets/Scenes/WinGame.unity
+    guid: ad379bc777beaec41bce163f7824daee
   m_configObjects: {}
