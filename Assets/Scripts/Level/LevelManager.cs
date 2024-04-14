@@ -21,6 +21,7 @@ namespace BML.Scripts.Level
         [SerializeField] private GameEvent _onLevelStarted;
         [SerializeField] private TimerVariable _levelTimer;
         [SerializeField] private GameEvent _onPlayerDeath;
+        [SerializeField] private FloatReference _levelTime;
 
         [SerializeField] private TransformSceneReference _playerSceneRef;
         [SerializeField] private TransformSceneReference _summonPointSceneRef;
@@ -43,6 +44,7 @@ namespace BML.Scripts.Level
             kinematicCharacterMotor.SetPositionAndRotation(_summonPointSceneRef.Value.position, _summonPointSceneRef.Value.rotation);
             
             DialogueLua.SetVariable("TaskSucceed", false);
+            _levelTimer.Duration = _levelTime != null ? _levelTime.Value : _levelTimer.Duration;
             _levelTimer.RestartTimer();
             _onLevelStarted.Raise();
         }

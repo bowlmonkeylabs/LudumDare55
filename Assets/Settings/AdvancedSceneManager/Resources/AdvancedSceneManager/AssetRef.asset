@@ -17,16 +17,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: afd97fc625f59dd4aa15b35ae3a0da72, type: 2}
   m_scenes:
   - {fileID: 11400000, guid: 38b554ca67fb6db4592419cc9626eb00, type: 2}
+  - {fileID: 11400000, guid: 5116ce6edd272f64caf3b4987d11be79, type: 2}
   - {fileID: 11400000, guid: 79f06312e30b710449b468d40c639efe, type: 2}
   - {fileID: 11400000, guid: 852789b3d66eb794f8411781c3363fc9, type: 2}
   - {fileID: 11400000, guid: a15797853561ca0498587feb5c4495ff, type: 2}
   - {fileID: 11400000, guid: af1a56c0db5ab5443ae4f305baddf06c, type: 2}
+  - {fileID: 11400000, guid: cdd4a07266fd5c644be76af6b6725b70, type: 2}
   m_collections:
   - {fileID: 11400000, guid: 17941bbcd724df24aa1c83856972d2f7, type: 2}
+  - {fileID: 11400000, guid: 1a603fd72a446064888902f2fae39d25, type: 2}
+  - {fileID: 11400000, guid: 1c59a8e9a0dd8c8428bdfa4f1e3a09e5, type: 2}
   - {fileID: 11400000, guid: 2fd9266b593d7b843bf87b6a2693c615, type: 2}
   - {fileID: 11400000, guid: 3a98eadc967c13a49ad6346664427537, type: 2}
   - {fileID: 11400000, guid: 5fbf1954a763e01469e489ee344cbff0, type: 2}
   - {fileID: 11400000, guid: 696c30170f88aa2408d8119c87590141, type: 2}
+  - {fileID: 11400000, guid: 6dcce404e6a0d9444853988b827b750d, type: 2}
   m_settings: {fileID: 11400000, guid: d6f52dcce593c64479fdfa0ca57611b6, type: 2}
   m_collectionManager: {fileID: 11400000, guid: e9f91a3aa0de27a40ba4bc99d428cd2a, type: 2}
   m_standaloneManager: {fileID: 11400000, guid: e65ad60069be3b94ea5ca27cdc73916f, type: 2}
