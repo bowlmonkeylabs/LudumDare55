@@ -94,7 +94,7 @@ namespace Player
             else 
                 _stopVacuumFeedbacks.PlayFeedbacks();
             
-            Debug.Log($"OnPrimary: {value.isPressed}");
+            //Debug.Log($"OnPrimary: {value.isPressed}");
         }
         
         protected virtual void OnSecondary(InputValue value)
@@ -189,7 +189,6 @@ namespace Player
                     (d.transform.position - transform.position).normalized))
             );
             _sprayFeedbacks.PlayFeedbacks();
-            Debug.Log($"Sprayed {sprayDetections.Count}");
         }
 
         #endregion

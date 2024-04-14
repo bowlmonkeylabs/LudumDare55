@@ -142,7 +142,7 @@ namespace BML.Scripts
 
         public bool Damage(int amount, DamageType damageType, bool ignoreInvincibility)
         {
-            Debug.Log($"{name} received {amount} damage from {damageType}");
+            //Debug.Log($"{name} received {amount} damage from {damageType}");
             if (IsDead || (IsInvincible && !ignoreInvincibility) || amount == 0) return false;
 
             if ((_damageTypeMask & damageType) == 0) return false;

@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using BML.ScriptableObjectCore.Scripts.Events;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace BML.Scripts {
     public class Cleanable : MonoBehaviour
@@ -10,13 +12,29 @@ namespace BML.Scripts {
         [SerializeField] private Health _vacuumHealth;
         [SerializeField] private ParticleSystem _sprayDirtParticles;
         [SerializeField] private ParticleSystem _vacuumDirtParticles;
+        [SerializeField] private GameEvent _onCleanedGameEvent;
+        [SerializeField] private UnityEvent _onCleaned;
+
+        public bool IsCleaned => isCleaned;
+        private bool isCleaned;
 
         private void Start()
         {
             UpdateParticles();
         }
 
-        public void UpdateParticles()
+        public void CheckCleaned()
+        {
+            if (isCleaned) return;
+            
+            UpdateParticles();
+            if (_sprayHealth.IsDead && _vacuumHealth.IsDead)
+            {
+                OnCleaned();
+            }
+        }
+
+        private void UpdateParticles()
         {
             if (_sprayHealth.Value > 0)
             {
@@ -40,6 +58,13 @@ namespace BML.Scripts {
                 _vacuumDirtParticles.Clear();
                 _vacuumDirtParticles.Stop();
             }
+        }
+
+        public void OnCleaned()
+        {
+            isCleaned = true;
+            _onCleanedGameEvent.Raise();
+            _onCleaned.Invoke();
         }
     }
 }

@@ -433,7 +433,7 @@ MonoBehaviour:
         InstantiateParticlesPosition: {fileID: 0}
         TargetWorldPosition: {x: 0, y: 0, z: 0}
         Offset: {x: 0, y: 0, z: 0}
-        NestParticles: 1
+        NestParticles: 0
         ApplyRotation: 0
         ApplyScale: 0
     00000001:
@@ -1151,19 +1151,7 @@ MonoBehaviour:
   _invincibilitySeconds: 0
   _onHealthChange:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1119177352300786134}
-        m_TargetAssemblyTypeName: BML.Scripts.Cleanable, BML.Scripts
-        m_MethodName: UpdateParticles
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _onTakeDamageHitInfo:
     m_PersistentCalls:
       m_Calls: []
@@ -1179,6 +1167,18 @@ MonoBehaviour:
       - m_Target: {fileID: 3141300264500538638}
         m_TargetAssemblyTypeName: MoreMountains.Feedbacks.MMF_Player, MoreMountains.Feedbacks
         m_MethodName: PlayFeedbacks
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1119177352300786134}
+        m_TargetAssemblyTypeName: BML.Scripts.Cleanable, BML.Scripts
+        m_MethodName: CheckCleaned
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1233,19 +1233,7 @@ MonoBehaviour:
   _invincibilitySeconds: 0
   _onHealthChange:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1119177352300786134}
-        m_TargetAssemblyTypeName: BML.Scripts.Cleanable, BML.Scripts
-        m_MethodName: UpdateParticles
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _onTakeDamageHitInfo:
     m_PersistentCalls:
       m_Calls: []
@@ -1261,6 +1249,18 @@ MonoBehaviour:
       - m_Target: {fileID: 2599614696814145739}
         m_TargetAssemblyTypeName: MoreMountains.Feedbacks.MMF_Player, MoreMountains.Feedbacks
         m_MethodName: PlayFeedbacks
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1119177352300786134}
+        m_TargetAssemblyTypeName: BML.Scripts.Cleanable, BML.Scripts
+        m_MethodName: CheckCleaned
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1305,6 +1305,10 @@ MonoBehaviour:
   _vacuumHealth: {fileID: 3242515833205033946}
   _sprayDirtParticles: {fileID: 426431707}
   _vacuumDirtParticles: {fileID: 233312794}
+  _onCleanedGameEvent: {fileID: 11400000, guid: 44ad2bd6437739145a4818d733d1d1b8, type: 2}
+  _onCleaned:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &9010154243892329807
 GameObject:
   m_ObjectHideFlags: 1
