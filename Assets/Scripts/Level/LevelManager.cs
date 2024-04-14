@@ -10,6 +10,7 @@ using KinematicCharacterController;
 using PixelCrushers.DialogueSystem.Wrappers;
 using PixelCrushers.DialogueSystem;
 using UnityEngine;
+using UnityEngine.Events;
 using DialogueActor = PixelCrushers.DialogueSystem.DialogueActor;
 
 namespace BML.Scripts.Level
@@ -30,6 +31,9 @@ namespace BML.Scripts.Level
         [SerializeField] private CurrentSceneLevelTaskDictionary _levelTasksDict;
         [SerializeField] private DialogueActor _dialogueActor;
         [SerializeField] private PixelCrushers.DialogueSystem.Wrappers.DialogueSystemTrigger _dialogueSystemTrigger;
+        
+        [SerializeField] private UnityEvent _onWinLevel;
+        [SerializeField] private UnityEvent _onLoseLevel;
 
         private void Start()
         {
@@ -78,6 +82,7 @@ namespace BML.Scripts.Level
                 _levelTimer.StopTimer();
                 DialogueLua.SetVariable("TaskSucceed", true);
                 this.StartDebriefConversation();
+                _onWinLevel.Invoke();
             }
         }
 
@@ -85,6 +90,7 @@ namespace BML.Scripts.Level
             _levelTimer.StopTimer();
             DialogueLua.SetVariable("TaskSucceed", false);
             this.StartDebriefConversation();
+            _onLoseLevel.Invoke();
         }
 
         private void StartDebriefConversation() {
