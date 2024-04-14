@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,16 +6,40 @@ using UnityEngine;
 namespace BML.Scripts {
     public class Cleanable : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        [SerializeField] private Health _sprayHealth;
+        [SerializeField] private Health _vacuumHealth;
+        [SerializeField] private ParticleSystem _sprayDirtParticles;
+        [SerializeField] private ParticleSystem _vacuumDirtParticles;
+
+        private void Start()
         {
-            
+            UpdateParticles();
         }
 
-        // Update is called once per frame
-        void Update()
+        public void UpdateParticles()
         {
-            
+            if (_sprayHealth.Value > 0)
+            {
+                _sprayDirtParticles.Play();
+                
+                _vacuumDirtParticles.Clear();
+                _vacuumDirtParticles.Stop();
+            }
+            else if (_vacuumHealth.Value > 0)
+            {
+                _sprayDirtParticles.Clear();
+                _sprayDirtParticles.Stop();
+                
+                _vacuumDirtParticles.Play();
+            }
+            else
+            {
+                _sprayDirtParticles.Clear();
+                _sprayDirtParticles.Stop();
+                
+                _vacuumDirtParticles.Clear();
+                _vacuumDirtParticles.Stop();
+            }
         }
     }
 }
