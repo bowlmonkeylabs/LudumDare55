@@ -1308,7 +1308,19 @@ MonoBehaviour:
   _onCleanedGameEvent: {fileID: 11400000, guid: 44ad2bd6437739145a4818d733d1d1b8, type: 2}
   _onCleaned:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1646197760}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9010154243892329807
 GameObject:
   m_ObjectHideFlags: 1
