@@ -18,6 +18,7 @@ namespace BML.Scripts.Level
     public class LevelManager : MonoBehaviour
     {
         [SerializeField] private GameEvent _onCleanedGameEvent;
+        [SerializeField] private GameEvent _onLevelStarted;
         [SerializeField] private TimerVariable _levelTimer;
         [SerializeField] private GameEvent _onPlayerDeath;
 
@@ -43,6 +44,7 @@ namespace BML.Scripts.Level
             
             DialogueLua.SetVariable("TaskSucceed", false);
             _levelTimer.RestartTimer();
+            _onLevelStarted.Raise();
         }
 
         private void OnEnable()

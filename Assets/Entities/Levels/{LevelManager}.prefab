@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onCleanedGameEvent: {fileID: 11400000, guid: 44ad2bd6437739145a4818d733d1d1b8, type: 2}
+  _onLevelStarted: {fileID: 11400000, guid: af17472eae5db9a4abaaa25bec4871c8, type: 2}
   _levelTimer: {fileID: 11400000, guid: ef23a23acc8d18344b36d80137041230, type: 2}
   _onPlayerDeath: {fileID: 11400000, guid: 5c7a6f6b5e1da684dafad20ec050cea0, type: 2}
   _playerSceneRef: {fileID: 11400000, guid: 5ec3452c6748acc47a15c15bf8f76d47, type: 2}
