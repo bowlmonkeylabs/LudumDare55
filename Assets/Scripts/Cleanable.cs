@@ -66,5 +66,10 @@ namespace BML.Scripts {
             _onCleanedGameEvent.Raise();
             _onCleaned.Invoke();
         }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawWireSphere(transform.position, 0.5f);
+        }
     }
 }
