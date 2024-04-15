@@ -16,12 +16,14 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: fdf9bf0d539b5a34a84b17de0bc4701a, type: 2}
+    - {fileID: 11400000, guid: b59d29542364f5946b5601705082c094, type: 2}
     - {fileID: 11400000, guid: 1a603fd72a446064888902f2fae39d25, type: 2}
     - {fileID: 11400000, guid: 1c59a8e9a0dd8c8428bdfa4f1e3a09e5, type: 2}
     - {fileID: 11400000, guid: 58b9f83f431f03d4992fbcb4efc4e676, type: 2}
     - {fileID: 11400000, guid: ddcb5982b5bccfe47a445b1d1f979f29, type: 2}
     - {fileID: 11400000, guid: 3743a88717641694aa7133646e725821, type: 2}
+    - {fileID: 11400000, guid: f6750a6e6e099e64f95401ed7be38fcb, type: 2}
+    - {fileID: 11400000, guid: 954c62a42c382e6459961346eadcd46e, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -40,7 +42,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 6
+      Data: 8
     - Name: 
       Entry: 7
       Data: 
@@ -179,6 +181,54 @@ MonoBehaviour:
     - Name: SceneCollection
       Entry: 10
       Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 7
+    - Name: $v
+      Entry: 7
+      Data: BML.Scripts.CurrentSceneLevelTaskDictionary+LevelTask, BML.Scripts
+    - Name: Actor
+      Entry: 1
+      Data: Summoner07
+    - Name: Conversation
+      Entry: 1
+      Data: Task01
+    - Name: SceneCollection
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 8
+    - Name: $v
+      Entry: 7
+      Data: BML.Scripts.CurrentSceneLevelTaskDictionary+LevelTask, BML.Scripts
+    - Name: Actor
+      Entry: 1
+      Data: Summoner08
+    - Name: Conversation
+      Entry: 1
+      Data: Task01
+    - Name: SceneCollection
+      Entry: 10
+      Data: 7
     - Name: 
       Entry: 8
       Data: 

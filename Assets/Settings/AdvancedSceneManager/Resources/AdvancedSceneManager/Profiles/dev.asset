@@ -17,10 +17,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5fbf1954a763e01469e489ee344cbff0, type: 2}
   - {fileID: 11400000, guid: 3a98eadc967c13a49ad6346664427537, type: 2}
   - {fileID: 11400000, guid: 2fd9266b593d7b843bf87b6a2693c615, type: 2}
+  - {fileID: 11400000, guid: b59d29542364f5946b5601705082c094, type: 2}
   - {fileID: 11400000, guid: 1a603fd72a446064888902f2fae39d25, type: 2}
   - {fileID: 11400000, guid: 1c59a8e9a0dd8c8428bdfa4f1e3a09e5, type: 2}
   - {fileID: 11400000, guid: 58b9f83f431f03d4992fbcb4efc4e676, type: 2}
   - {fileID: 11400000, guid: ddcb5982b5bccfe47a445b1d1f979f29, type: 2}
+  - {fileID: 11400000, guid: 54efa6e50c07cd64a94e0f47d69dca41, type: 2}
+  - {fileID: 11400000, guid: f6750a6e6e099e64f95401ed7be38fcb, type: 2}
+  - {fileID: 11400000, guid: 954c62a42c382e6459961346eadcd46e, type: 2}
   m_removedCollections: []
   m_startupScene: 
   m_loadingScreen: 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BML.ScriptableObjectCore.Scripts.Variables;
 using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
+using PlasticPipe.PlasticProtocol.Messages;
 using UnityEngine;
 
 namespace BML.Scripts {
@@ -10,14 +11,17 @@ namespace BML.Scripts {
     {
         [SerializeField] private TimerReference _cooldownTimer;
         [SerializeField] private TimerReference _timer;
+        [SerializeField] private float _preDelay;
         [SerializeField] private LayerMask _playerMask;
         [SerializeField] private MMF_Player _electricFeedbacks;
         [SerializeField] private MMF_Player _shockFeedbacks;
         [SerializeField] private int _damage = 1;
         [SerializeField] private DamageType _damageType;
 
+        private bool isStarted;
         private bool isEnabled;
         private bool isCleaned;
+        private float spawnTime;
 
         // private void OnEnable() {
         //     _timer.SubscribeFinished(OnTimerFinish);
@@ -30,13 +34,21 @@ namespace BML.Scripts {
         // }
 
         private void Start() {
-            _timer.RestartTimer();
-            ToggleActive(true);
+            spawnTime = Time.time;
         }
 
         void Update()
         {
             if (isCleaned) return;
+
+            // Start after pre-delay
+            if (!isStarted && spawnTime + _preDelay < Time.time) {
+                isStarted = true;
+                _timer.StartTimer();
+                ToggleActive(true);
+            }
+            
+            if (!isStarted) return;
             
             _timer.UpdateTime();
             _cooldownTimer.UpdateTime();

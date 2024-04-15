@@ -476,11 +476,11 @@ MonoBehaviour:
   GenerateMeshAssetByEditorName: Mesh Mesh 4294942248
   RecursiveLockMeshByEditor: 1
   RememberLockedMeshMaterialByEditor: 1
-  MeshGenerationLockOnStartByEditor: 0
+  MeshGenerationLockOnStartByEditor: 1
   m_lastLockedMeshMaterial: {fileID: 0}
   m_aBrushTransformCache: []
   m_aNestedRendereTransformCache: []
-  m_isMeshLocked: 0
+  m_isMeshLocked: 1
   DrawGenerateSdfGizmos: 0
   GenerateSdfByEditorName: Mesh SDF 4294942248
   GenerateSdfCenter: {x: 0, y: 0, z: 0}
@@ -1427,6 +1427,18 @@ PrefabInstance:
     - target: {fileID: 7228037565043273121, guid: 877ab6370076f824f91443bb8739bbe3, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228037565043273121, guid: 877ab6370076f824f91443bb8739bbe3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228037565043273121, guid: 877ab6370076f824f91443bb8739bbe3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228037565043273121, guid: 877ab6370076f824f91443bb8739bbe3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7228037565043273121, guid: 877ab6370076f824f91443bb8739bbe3, type: 3}
       propertyPath: m_LocalPosition.x
