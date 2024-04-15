@@ -220,7 +220,7 @@ namespace BML.ScriptableObjectCore.Scripts.Variables
         private float? ConstantRemainingTime = null;
 
         private bool AlwaysTrue => true;
-        private bool isConstantStarted = true;
+        private bool isConstantStarted = false;
         private bool isConstantStopped = true;
         private bool isConstantFinished = false;
 

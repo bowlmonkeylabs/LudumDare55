@@ -27,7 +27,7 @@ namespace BML.Scripts
             AttemptDamage(col.collider);
         }
 
-        private void AttemptDamage(Collider other)
+        public void AttemptDamage(Collider other)
         {
             if(_lastDamageTime + _damageCooldown > Time.time) {
                 return;

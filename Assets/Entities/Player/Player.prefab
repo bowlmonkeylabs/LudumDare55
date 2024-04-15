@@ -3127,7 +3127,7 @@ MonoBehaviour:
     ReferenceValue_BoolVariable: {fileID: 0}
     ReferenceValue_FunctionVariable: {fileID: 0}
     ReferenceValue_EvaluateCurveVariable: {fileID: 0}
-  _damageTypeMask: 0
+  _damageTypeMask: 4
   _isInvincible: 0
   _useInvincibilityVariable: 0
   _invincibilityTimer:
@@ -3220,7 +3220,19 @@ MonoBehaviour:
       ReferenceValue_EvaluateCurveVariable: {fileID: 0}
     _onDamage:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 7334686890962222334}
+          m_TargetAssemblyTypeName: BML.Scripts.Health, BML.Scripts
+          m_MethodName: Kill
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     _onFailDamage:
       m_PersistentCalls:
         m_Calls: []
