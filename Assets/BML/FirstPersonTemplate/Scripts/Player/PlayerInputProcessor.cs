@@ -118,7 +118,11 @@ namespace Player
         
         protected virtual void OnApplicationFocus(bool hasFocus)
         {
-	        SetCursorState(cursorLocked);
+	        bool isUsingUi = playerInput.currentActionMap.name == "UI";
+	        if (!isUsingUi)
+	        {
+				SetCursorState(cursorLocked);
+	        }
         }
 
         protected virtual void UpdateInputState()
