@@ -113,7 +113,7 @@ namespace BML.Scripts.Level
                 _currentSceneLevel.Value += 1;
 
                 var nextTask = _levelTasksDict.TryGetCurrentLevelTask();
-                if (nextTask != null)
+                if (nextTask == null) // if completed all tasks
                 {
                     _outputPlayerWonGame.Value = true;
                     SceneHelper.current.OpenOrReopenCollection(_gameCompletedSceneCollection);
