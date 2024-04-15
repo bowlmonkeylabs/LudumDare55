@@ -18,10 +18,8 @@ MonoBehaviour:
   ContainerKey: 1
   Description: 
   TriggerVariables: []
-  BoolVariables:
-  - {fileID: 11400000, guid: c181fe980d400114984d346b9f658df9, type: 2}
-  IntVariables:
-  - {fileID: 11400000, guid: c001586ff22d97346aadc994d4268588, type: 2}
+  BoolVariables: []
+  IntVariables: []
   FloatVariables:
   - {fileID: 11400000, guid: a0dd7973c053207418e10c8f444ee980, type: 2}
   - {fileID: 11400000, guid: 1f0f67713c0e3c64b8004abf9c8be967, type: 2}
