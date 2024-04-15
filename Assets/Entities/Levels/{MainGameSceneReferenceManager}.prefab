@@ -46,6 +46,8 @@ MonoBehaviour:
   TransformSceneList:
   - sceneReference: {fileID: 11400000, guid: 5ec3452c6748acc47a15c15bf8f76d47, type: 2}
     sceneValue: {fileID: 0}
+  - sceneReference: {fileID: 11400000, guid: a22497a341ed9404ba0d75acb8291246, type: 2}
+    sceneValue: {fileID: 0}
   GameObjectSceneList: []
   ParticleSystemSceneList: []
   AnimatorSceneList: []

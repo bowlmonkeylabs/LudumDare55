@@ -20,6 +20,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 696c30170f88aa2408d8119c87590141, type: 2}
   - {fileID: 11400000, guid: 1a603fd72a446064888902f2fae39d25, type: 2}
   - {fileID: 11400000, guid: 1c59a8e9a0dd8c8428bdfa4f1e3a09e5, type: 2}
+  - {fileID: 11400000, guid: 58b9f83f431f03d4992fbcb4efc4e676, type: 2}
+  - {fileID: 11400000, guid: ddcb5982b5bccfe47a445b1d1f979f29, type: 2}
   m_removedCollections: []
   m_startupScene: 
   m_loadingScreen: 

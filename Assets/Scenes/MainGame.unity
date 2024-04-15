@@ -193,56 +193,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4123147482802667433, guid: 209a35df32ee3a741a413a1070e3e75b, type: 3}
   m_PrefabInstance: {fileID: 88565581}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &88565583 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 878999854728173373, guid: 209a35df32ee3a741a413a1070e3e75b, type: 3}
-  m_PrefabInstance: {fileID: 88565581}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &88565584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 88565583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b30e1dba8ca5434283cb2b68a1e91bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: FloatValues
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[BML.ScriptableObjectCore.Scripts.Variables.ValueReferences.FloatValueReference,
-        ScriptableObjectSystem]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-  BoolVariables:
-  - {fileID: 0}
-  TriggerVariables: []
-  FloatVariables: []
-  IntVariables: []
-  TimerVariables: []
-  Vector2Variables: []
-  Vector3Variables: []
-  OnUpdate:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1001 &171344076
 PrefabInstance:
   m_ObjectHideFlags: 0
