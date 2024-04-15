@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.ibicha.youtube-player": "3.2.0",
     "com.harumak.upalette": "2.1.1",
     "com.singularitygroup.hotreload": "git+https://gitlab.hotreload.net/root/hot-reload-releases.git#1.12.9",
     "com.thisotherthing.uishapeskit": "1.0.5",
@@ -62,6 +63,13 @@
       "scopes": [
         "com.thisotherthing.uishapeskit",
         "com.harumak.upalette"
+      ]
+    },
+    {
+      "name": "iBicha",
+      "url": "https://registry.npmjs.com",
+      "scopes": [
+        "com.ibicha"
       ]
     }
   ]

@@ -51,6 +51,13 @@ MonoBehaviour:
   _onLevelStarted: {fileID: 11400000, guid: af17472eae5db9a4abaaa25bec4871c8, type: 2}
   _levelTimer: {fileID: 11400000, guid: ef23a23acc8d18344b36d80137041230, type: 2}
   _onPlayerDeath: {fileID: 11400000, guid: 5c7a6f6b5e1da684dafad20ec050cea0, type: 2}
+  _levelTime:
+    UseConstant: 0
+    EnableInstanceOptions: 0
+    InstanceName: 
+    InstancePath: IntermediateProperties
+    ConstantValue: 0
+    Variable: {fileID: 0}
   _playerSceneRef: {fileID: 11400000, guid: 5ec3452c6748acc47a15c15bf8f76d47, type: 2}
   _summonPointSceneRef: {fileID: 11400000, guid: 8184ee98ebb3ff948b107570b9ef28b9, type: 2}
   _pregameSceneCollection: {fileID: 11400000, guid: 3a98eadc967c13a49ad6346664427537, type: 2}
@@ -89,6 +96,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _outputPlayerWonGame: {fileID: 11400000, guid: c181fe980d400114984d346b9f658df9, type: 2}
 --- !u!114 &727649760
 MonoBehaviour:
   m_ObjectHideFlags: 0

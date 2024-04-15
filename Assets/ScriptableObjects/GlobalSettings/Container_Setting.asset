@@ -18,7 +18,8 @@ MonoBehaviour:
   ContainerKey: 1
   Description: 
   TriggerVariables: []
-  BoolVariables: []
+  BoolVariables:
+  - {fileID: 11400000, guid: c181fe980d400114984d346b9f658df9, type: 2}
   IntVariables:
   - {fileID: 11400000, guid: c001586ff22d97346aadc994d4268588, type: 2}
   FloatVariables:
@@ -31,6 +32,6 @@ MonoBehaviour:
   Vector3Variables: []
   QuaternionVariables: []
   TimerVariables:
-  - {fileID: 11400000, guid: 888e6e0101ff92d45ba22e4b18550ebf, type: 2}
+  - {fileID: 11400000, guid: ef23a23acc8d18344b36d80137041230, type: 2}
   FunctionVariables: []
   LootTableVariables: []

@@ -37,6 +37,8 @@ namespace BML.Scripts.Level
         [SerializeField] private UnityEvent _onWinLevel;
         [SerializeField] private UnityEvent _onLoseLevel;
 
+        [SerializeField] private BoolVariable _outputPlayerWonGame;
+
         private void Start()
         {
             Debug.Log("Teleporting player to summon point");
@@ -107,13 +109,19 @@ namespace BML.Scripts.Level
         public void TryProgressToNextLevel()
         {
             bool levelSuccess = DialogueLua.GetVariable("TaskSucceed").AsBool;
-            if(levelSuccess) {
+            if (levelSuccess) {
                 _currentSceneLevel.Value += 1;
 
-                var nextScene = (_levelTasksDict.TryGetCurrentLevelTask() != null)
-                    ? _pregameSceneCollection
-                    : _gameCompletedSceneCollection;
-                SceneHelper.current.OpenOrReopenCollection(nextScene);
+                var nextTask = _levelTasksDict.TryGetCurrentLevelTask();
+                if (nextTask != null)
+                {
+                    _outputPlayerWonGame.Value = true;
+                    SceneHelper.current.OpenOrReopenCollection(_gameCompletedSceneCollection);
+                }
+                else
+                {
+                    SceneHelper.current.OpenOrReopenCollection(_pregameSceneCollection);
+                }
             } else {
                 SceneHelper.current.OpenOrReopenCollection(_pregameSceneCollection);
             }

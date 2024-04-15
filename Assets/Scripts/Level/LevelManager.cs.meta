@@ -1,3 +1,24 @@
 fileFormatVersion: 2
 guid: 4c9f3cfd3c0b4110aba94d077ba7d7f8
-timeCreated: 1713055643
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _onCleanedGameEvent: {instanceID: 0}
+  - _onLevelStarted: {instanceID: 0}
+  - _levelTimer: {instanceID: 0}
+  - _onPlayerDeath: {instanceID: 0}
+  - _playerSceneRef: {instanceID: 0}
+  - _summonPointSceneRef: {instanceID: 0}
+  - _pregameSceneCollection: {instanceID: 0}
+  - _gameCompletedSceneCollection: {instanceID: 0}
+  - _currentSceneLevel: {instanceID: 0}
+  - _levelTasksDict: {instanceID: 0}
+  - _dialogueActor: {instanceID: 0}
+  - _dialogueSystemTrigger: {instanceID: 0}
+  - _outputPlayerWonGame: {fileID: 11400000, guid: c181fe980d400114984d346b9f658df9, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
