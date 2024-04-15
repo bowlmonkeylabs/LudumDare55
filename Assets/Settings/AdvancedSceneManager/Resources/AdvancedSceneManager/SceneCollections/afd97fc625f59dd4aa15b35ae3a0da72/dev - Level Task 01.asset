@@ -16,7 +16,7 @@ MonoBehaviour:
   m_description: 
   m_scenes:
   - Assets/Scenes/MainGame.unity
-  - Assets/Scenes/Level_Task01.unity
+  - Assets/Scenes/Levels/Level_Task01.unity
   m_loadingScreenUsage: 1
   m_loadingScreen: 
   m_activeScene: 
