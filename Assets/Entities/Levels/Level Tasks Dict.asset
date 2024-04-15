@@ -73,7 +73,7 @@ MonoBehaviour:
       Data: BML.Scripts.CurrentSceneLevelTaskDictionary+LevelTask, BML.Scripts
     - Name: Actor
       Entry: 1
-      Data: Summoner03
+      Data: Summoner02
     - Name: Conversation
       Entry: 1
       Data: Task01

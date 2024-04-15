@@ -38,7 +38,7 @@ MonoBehaviour:
   - id: 1
     fields:
     - title: Name
-      value: Bozzik
+      value: Player
       type: 0
       typeString: CustomFieldType_Text
     - title: Pictures
