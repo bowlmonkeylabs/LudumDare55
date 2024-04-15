@@ -1081,7 +1081,7 @@ MonoBehaviour:
   m_lastLockedMeshMaterial: {fileID: 0}
   m_aBrushTransformCache: []
   m_aNestedRendereTransformCache: []
-  m_isMeshLocked: 0
+  m_isMeshLocked: 1
   DrawGenerateSdfGizmos: 0
   GenerateSdfByEditorName: Mesh SDF 4294784910
   GenerateSdfCenter: {x: 0, y: 0, z: 0}

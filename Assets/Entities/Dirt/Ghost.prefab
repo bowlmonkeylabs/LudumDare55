@@ -2857,7 +2857,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 111915666134033605, guid: c07cc82d25ecaf444a87b00cc8f74729, type: 3}
       propertyPath: m_Name
-      value: Ghost Variant
+      value: Ghost
       objectReference: {fileID: 0}
     - target: {fileID: 111915666134033606, guid: c07cc82d25ecaf444a87b00cc8f74729, type: 3}
       propertyPath: m_RootOrder
@@ -3528,11 +3528,11 @@ MonoBehaviour:
   GenerateMeshAssetByEditorName: Mesh Mesh 4294942248
   RecursiveLockMeshByEditor: 1
   RememberLockedMeshMaterialByEditor: 1
-  MeshGenerationLockOnStartByEditor: 0
+  MeshGenerationLockOnStartByEditor: 1
   m_lastLockedMeshMaterial: {fileID: 0}
   m_aBrushTransformCache: []
   m_aNestedRendereTransformCache: []
-  m_isMeshLocked: 0
+  m_isMeshLocked: 1
   DrawGenerateSdfGizmos: 0
   GenerateSdfByEditorName: Mesh SDF 4294942248
   GenerateSdfCenter: {x: 0, y: 0, z: 0}
