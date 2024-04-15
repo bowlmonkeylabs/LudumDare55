@@ -3770,6 +3770,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8112346341807561473}
   - component: {fileID: 4616238950304875552}
+  - component: {fileID: 5570464035348164086}
   m_Layer: 3
   m_Name: AlwaysOnTopCamera
   m_TagString: Untagged
@@ -3830,10 +3831,37 @@ Camera:
   m_HDR: 1
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &5570464035348164086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5097746844197997602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d35af20b508d5546ba80581bc1b979a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ssccShader: {fileID: 4800000, guid: 89ec5ce1bd95ed946a65b649164a9c1d, type: 3}
+  effectIntensity: 1
+  distanceFade: 0
+  curvaturePixelRadius: 2
+  curvatureBrights: 1.91
+  curvatureDarks: 3
+  cavitySamples: 2
+  saturateCavity: 1
+  cavityRadius: 0.1
+  cavityBrights: 3
+  cavityDarks: 2
+  cavityResolution: 2
+  normalsSource: 1
+  debugMode: 0
+  output: 0
 --- !u!1 &5289487521721074053
 GameObject:
   m_ObjectHideFlags: 0
@@ -6373,6 +6401,7 @@ GameObject:
   - component: {fileID: 8295406715259395091}
   - component: {fileID: 8295406715259395090}
   - component: {fileID: 8268765548277211148}
+  - component: {fileID: 6492831534028050386}
   m_Layer: 3
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -6424,7 +6453,7 @@ Camera:
     height: 1
   near clip plane: 0.2
   far clip plane: 500
-  field of view: 64.18958
+  field of view: 58.70761
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -6438,7 +6467,7 @@ Camera:
   m_HDR: 1
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -6484,6 +6513,33 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6492831534028050386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8295406715259395089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d35af20b508d5546ba80581bc1b979a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ssccShader: {fileID: 4800000, guid: 89ec5ce1bd95ed946a65b649164a9c1d, type: 3}
+  effectIntensity: 1
+  distanceFade: 0
+  curvaturePixelRadius: 2
+  curvatureBrights: 1.91
+  curvatureDarks: 3
+  cavitySamples: 2
+  saturateCavity: 1
+  cavityRadius: 0.1
+  cavityBrights: 3
+  cavityDarks: 2
+  cavityResolution: 2
+  normalsSource: 1
+  debugMode: 0
+  output: 0
 --- !u!1 &8453274358955494574
 GameObject:
   m_ObjectHideFlags: 0
@@ -7415,11 +7471,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8ea1b014f1f9354587cc0d5cf9cdf14, type: 3}
---- !u!4 &4362176311394767837 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4362176311731082655, guid: a8ea1b014f1f9354587cc0d5cf9cdf14, type: 3}
-  m_PrefabInstance: {fileID: 873842242}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &4362176311413060483 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 4362176311749506497, guid: a8ea1b014f1f9354587cc0d5cf9cdf14, type: 3}
@@ -7428,6 +7479,11 @@ ParticleSystem:
 --- !u!108 &4362176311405104885 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 4362176311741450423, guid: a8ea1b014f1f9354587cc0d5cf9cdf14, type: 3}
+  m_PrefabInstance: {fileID: 873842242}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4362176311394767837 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4362176311731082655, guid: a8ea1b014f1f9354587cc0d5cf9cdf14, type: 3}
   m_PrefabInstance: {fileID: 873842242}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1224900200735515033

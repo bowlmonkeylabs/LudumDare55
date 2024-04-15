@@ -142,7 +142,6 @@ PlayerSettings:
   - {fileID: 11400000, guid: a15797853561ca0498587feb5c4495ff, type: 2}
   - {fileID: 11400000, guid: 17941bbcd724df24aa1c83856972d2f7, type: 2}
   - {fileID: 11400000, guid: 5fbf1954a763e01469e489ee344cbff0, type: 2}
-  - {fileID: 11400000, guid: 696c30170f88aa2408d8119c87590141, type: 2}
   - {fileID: 11400000, guid: d6f52dcce593c64479fdfa0ca57611b6, type: 2}
   - {fileID: 11400000, guid: e9f91a3aa0de27a40ba4bc99d428cd2a, type: 2}
   - {fileID: 11400000, guid: e65ad60069be3b94ea5ca27cdc73916f, type: 2}
@@ -158,10 +157,11 @@ PlayerSettings:
   - {fileID: 11400000, guid: 1a603fd72a446064888902f2fae39d25, type: 2}
   - {fileID: 11400000, guid: 1c59a8e9a0dd8c8428bdfa4f1e3a09e5, type: 2}
   - {fileID: 11400000, guid: 6dcce404e6a0d9444853988b827b750d, type: 2}
-  - {fileID: 11400000, guid: 6335fc2030441914387a8b61d24972aa, type: 2}
-  - {fileID: 11400000, guid: fad39fcd39933ef47a49bbdcb33d5a15, type: 2}
   - {fileID: 11400000, guid: 58b9f83f431f03d4992fbcb4efc4e676, type: 2}
   - {fileID: 11400000, guid: ddcb5982b5bccfe47a445b1d1f979f29, type: 2}
+  - {fileID: 11400000, guid: 6335fc2030441914387a8b61d24972aa, type: 2}
+  - {fileID: 11400000, guid: fad39fcd39933ef47a49bbdcb33d5a15, type: 2}
+  - {fileID: 11400000, guid: fdf9bf0d539b5a34a84b17de0bc4701a, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
