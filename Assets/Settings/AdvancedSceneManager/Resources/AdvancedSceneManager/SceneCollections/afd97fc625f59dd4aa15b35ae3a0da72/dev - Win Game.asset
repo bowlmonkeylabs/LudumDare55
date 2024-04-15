@@ -15,7 +15,6 @@ MonoBehaviour:
   hasSetDefaultActiveScene: 0
   m_description: 
   m_scenes:
-  - Assets/Scenes/MainGame.unity
   - Assets/Scenes/WinGame.unity
   m_loadingScreenUsage: 1
   m_loadingScreen: 
