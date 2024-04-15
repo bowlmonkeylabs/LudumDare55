@@ -130,10 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1405959880797009722, guid: 209a35df32ee3a741a413a1070e3e75b, type: 3}
-      propertyPath: m_Lens.FieldOfView
-      value: 58.70166
-      objectReference: {fileID: 0}
     - target: {fileID: 6218431209115767019, guid: 209a35df32ee3a741a413a1070e3e75b, type: 3}
       propertyPath: m_Name
       value: Player
@@ -182,10 +178,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8295406715259395091, guid: 209a35df32ee3a741a413a1070e3e75b, type: 3}
-      propertyPath: field of view
-      value: 58.70166
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 209a35df32ee3a741a413a1070e3e75b, type: 3}
 --- !u!4 &88565582 stripped
@@ -203,6 +195,10 @@ PrefabInstance:
     - target: {fileID: 2589737090555656334, guid: d57694207a019414b8414113d91d943c, type: 3}
       propertyPath: m_Name
       value: '{PlayerHUD}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2589737090555656334, guid: d57694207a019414b8414113d91d943c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2589737090555656338, guid: d57694207a019414b8414113d91d943c, type: 3}
       propertyPath: m_Pivot.x
@@ -463,6 +459,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &888984607 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8295406715259395092, guid: 209a35df32ee3a741a413a1070e3e75b, type: 3}
+  m_PrefabInstance: {fileID: 88565581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1004346609
 GameObject:
   m_ObjectHideFlags: 1
@@ -519,6 +520,10 @@ PrefabInstance:
       propertyPath: TransformSceneList.Array.data[0].sceneValue
       value: 
       objectReference: {fileID: 88565582}
+    - target: {fileID: 2723767896975432006, guid: 23ce84cb1b5e33645974e41ed13947b5, type: 3}
+      propertyPath: TransformSceneList.Array.data[1].sceneValue
+      value: 
+      objectReference: {fileID: 888984607}
     - target: {fileID: 6167077562290295890, guid: 23ce84cb1b5e33645974e41ed13947b5, type: 3}
       propertyPath: m_Name
       value: '{MainGameSceneReferenceManager}'
