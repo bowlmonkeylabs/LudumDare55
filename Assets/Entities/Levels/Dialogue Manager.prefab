@@ -75,7 +75,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 255
 --- !u!114 &5451902943513205284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
       cancelConversation:
         key: 27
         buttonName: 
-    dialogueUI: {fileID: 101180, guid: 5ba51781a19f8a843abeb2d304d0d26e, type: 3}
+    dialogueUI: {fileID: 101180, guid: cebce1d9353084548a000c9086371b62, type: 3}
     defaultCanvas: {fileID: 2188060604585531196}
     localizationSettings:
       language: 
@@ -287,7 +287,7 @@ MonoBehaviour:
   alwaysAutoFocus: 0
   detectMouseControl: 1
   mouseMoveThreshold: 0.1
-  controlCursorState: 1
+  controlCursorState: 0
   enforceCursorOnPause: 0
   controlGraphicRaycasters: 0
   backKeyCodes: 4b010000
