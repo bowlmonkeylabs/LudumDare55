@@ -15,8 +15,8 @@ MonoBehaviour:
   hasSetDefaultActiveScene: 0
   m_description: 
   m_scenes:
-  - Assets/Scenes/MainGame.unity
   - Assets/Scenes/Levels/Level_Task05.unity
+  - Assets/Scenes/MainGame.unity
   m_loadingScreenUsage: 1
   m_loadingScreen: 
   m_activeScene: 
@@ -27,6 +27,8 @@ MonoBehaviour:
   m_unloadUnusedAssets: 1
   m_tags:
     m_throw: 1
-    m_keys: []
-    m_values: []
+    m_keys:
+    - Assets/Scenes/MainGame.unity
+    m_values:
+    - PersistIfPossible
   m_title: Level Task 05
