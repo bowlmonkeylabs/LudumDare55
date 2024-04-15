@@ -5543,9 +5543,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c07cc82d25ecaf444a87b00cc8f74729, type: 3}
---- !u!1 &3258244376835362185 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 111915666496578903, guid: c07cc82d25ecaf444a87b00cc8f74729, type: 3}
+--- !u!4 &3258244376257858584 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 111915666134033606, guid: c07cc82d25ecaf444a87b00cc8f74729, type: 3}
   m_PrefabInstance: {fileID: 3222889908645128414}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &3258244376835362182 stripped
@@ -5553,9 +5553,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 111915666496578904, guid: c07cc82d25ecaf444a87b00cc8f74729, type: 3}
   m_PrefabInstance: {fileID: 3222889908645128414}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &3258244376257858584 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 111915666134033606, guid: c07cc82d25ecaf444a87b00cc8f74729, type: 3}
+--- !u!1 &3258244376835362185 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 111915666496578903, guid: c07cc82d25ecaf444a87b00cc8f74729, type: 3}
   m_PrefabInstance: {fileID: 3222889908645128414}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &5373483252684881311 stripped
@@ -5678,7 +5678,7 @@ MonoBehaviour:
   GenerateColliderMeshAssetByEditor: 1
   GenerateColliderMeshAssetByEditorName: Mesh Collider Mesh 4294942248
   MeshGenerationColliderVoxelDensity: 4
-  MeshGenerationRenderableMeshMode: 1
+  MeshGenerationRenderableMeshMode: 2
   MeshGenerationAutoRigging: 0
   MeshGenerationAutoRiggingMaxBonesPerVertex: 4
   MeshGenerationGenerateTextureUV: 0
@@ -5686,11 +5686,11 @@ MonoBehaviour:
   MeshGenerationWeldVertices: 0
   MeshGenerationLockOnStart: 0
   GenerateMeshAssetByEditor: 1
-  GenerateMeshAssetByEditorName: Mesh Mesh 4294942248
+  GenerateMeshAssetByEditorName: Mesh Mesh 42949422482
   RecursiveLockMeshByEditor: 1
   RememberLockedMeshMaterialByEditor: 1
   MeshGenerationLockOnStartByEditor: 1
-  m_lastLockedMeshMaterial: {fileID: 0}
+  m_lastLockedMeshMaterial: {fileID: 2100000, guid: 9effbf2d5034c0047ac3ab53914457f5, type: 2}
   m_aBrushTransformCache: []
   m_aNestedRendereTransformCache: []
   m_isMeshLocked: 1
@@ -5709,7 +5709,58 @@ MonoBehaviour:
   TimeSliceFramesOffset: 0
   TimeSlicePeriod: 0.05
   TimeSliceTimeOffset: 0
-  m_addedComponents: []
+  m_addedComponents:
+  - UnityEngine.MeshFilter
+  - UnityEngine.MeshRenderer
+--- !u!33 &3066308211970598781
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3258244376835362185}
+  m_Mesh: {fileID: 4300000, guid: fbb444b7c5d76d2478b1547af6026bf2, type: 2}
+--- !u!23 &2655381237177134616
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3258244376835362185}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 9effbf2d5034c0047ac3ab53914457f5, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &5601159345548382360
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -924,6 +924,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2914791175909556107}
   - component: {fileID: 88565585}
+  - component: {fileID: 6326953225796792514}
+  - component: {fileID: 4979975985428729357}
   m_Layer: 6
   m_Name: Mesh
   m_TagString: Untagged
@@ -1066,7 +1068,7 @@ MonoBehaviour:
   GenerateColliderMeshAssetByEditor: 1
   GenerateColliderMeshAssetByEditorName: Mesh Collider Mesh 4294784910
   MeshGenerationColliderVoxelDensity: 4
-  MeshGenerationRenderableMeshMode: 1
+  MeshGenerationRenderableMeshMode: 2
   MeshGenerationAutoRigging: 0
   MeshGenerationAutoRiggingMaxBonesPerVertex: 4
   MeshGenerationGenerateTextureUV: 0
@@ -1074,11 +1076,11 @@ MonoBehaviour:
   MeshGenerationWeldVertices: 0
   MeshGenerationLockOnStart: 0
   GenerateMeshAssetByEditor: 1
-  GenerateMeshAssetByEditorName: Mesh Mesh 4294784910
+  GenerateMeshAssetByEditorName: Mesh Mesh 4294784911
   RecursiveLockMeshByEditor: 1
   RememberLockedMeshMaterialByEditor: 1
   MeshGenerationLockOnStartByEditor: 1
-  m_lastLockedMeshMaterial: {fileID: 0}
+  m_lastLockedMeshMaterial: {fileID: 2100000, guid: 9effbf2d5034c0047ac3ab53914457f5, type: 2}
   m_aBrushTransformCache: []
   m_aNestedRendereTransformCache: []
   m_isMeshLocked: 1
@@ -1097,7 +1099,58 @@ MonoBehaviour:
   TimeSliceFramesOffset: 0
   TimeSlicePeriod: 0.05
   TimeSliceTimeOffset: 0
-  m_addedComponents: []
+  m_addedComponents:
+  - UnityEngine.MeshFilter
+  - UnityEngine.MeshRenderer
+--- !u!33 &6326953225796792514
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120659553935446063}
+  m_Mesh: {fileID: 4300000, guid: 9490def0ef90aab4897d9ea20a4422f1, type: 2}
+--- !u!23 &4979975985428729357
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120659553935446063}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 9effbf2d5034c0047ac3ab53914457f5, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &544315566328521339
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,7 +1705,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 8972744215435549775}
   m_Lens:
-    FieldOfView: 58.70166
+    FieldOfView: 58.69183
     OrthographicSize: 10
     NearClipPlane: 0.2
     FarClipPlane: 500
@@ -6978,7 +7031,7 @@ Camera:
     height: 1
   near clip plane: 0.2
   far clip plane: 500
-  field of view: 58.70166
+  field of view: 58.69183
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -7587,6 +7640,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1248553604300587262}
   - component: {fileID: 8855708061136102872}
+  - component: {fileID: 7792692428798589400}
+  - component: {fileID: 2805800072350525108}
   m_Layer: 6
   m_Name: Mesh
   m_TagString: Untagged
@@ -7731,7 +7786,7 @@ MonoBehaviour:
   GenerateColliderMeshAssetByEditor: 1
   GenerateColliderMeshAssetByEditorName: Mesh Collider Mesh 4294784910
   MeshGenerationColliderVoxelDensity: 4
-  MeshGenerationRenderableMeshMode: 1
+  MeshGenerationRenderableMeshMode: 2
   MeshGenerationAutoRigging: 0
   MeshGenerationAutoRiggingMaxBonesPerVertex: 4
   MeshGenerationGenerateTextureUV: 0
@@ -7739,11 +7794,11 @@ MonoBehaviour:
   MeshGenerationWeldVertices: 0
   MeshGenerationLockOnStart: 0
   GenerateMeshAssetByEditor: 1
-  GenerateMeshAssetByEditorName: Mesh Mesh 4294784910
+  GenerateMeshAssetByEditorName: Mesh Mesh 42947849103
   RecursiveLockMeshByEditor: 1
   RememberLockedMeshMaterialByEditor: 1
   MeshGenerationLockOnStartByEditor: 1
-  m_lastLockedMeshMaterial: {fileID: 0}
+  m_lastLockedMeshMaterial: {fileID: 2100000, guid: 9effbf2d5034c0047ac3ab53914457f5, type: 2}
   m_aBrushTransformCache: []
   m_aNestedRendereTransformCache: []
   m_isMeshLocked: 1
@@ -7762,7 +7817,58 @@ MonoBehaviour:
   TimeSliceFramesOffset: 0
   TimeSlicePeriod: 0.05
   TimeSliceTimeOffset: 0
-  m_addedComponents: []
+  m_addedComponents:
+  - UnityEngine.MeshFilter
+  - UnityEngine.MeshRenderer
+--- !u!33 &7792692428798589400
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8920042107589722131}
+  m_Mesh: {fileID: 4300000, guid: c71b19349cef9d14fbed328b121137cd, type: 2}
+--- !u!23 &2805800072350525108
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8920042107589722131}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 9effbf2d5034c0047ac3ab53914457f5, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &8972744215435549768
 GameObject:
   m_ObjectHideFlags: 0
@@ -8195,13 +8301,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 941e7ab621c61244fb9e5d7b77f22489, type: 3}
---- !u!198 &198988519471062594 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6561601689877355442, guid: 941e7ab621c61244fb9e5d7b77f22489, type: 3}
-  m_PrefabInstance: {fileID: 6470985443118286320}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4384161318871002 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6467764617178683946, guid: 941e7ab621c61244fb9e5d7b77f22489, type: 3}
+  m_PrefabInstance: {fileID: 6470985443118286320}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &198988519471062594 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6561601689877355442, guid: 941e7ab621c61244fb9e5d7b77f22489, type: 3}
   m_PrefabInstance: {fileID: 6470985443118286320}
   m_PrefabAsset: {fileID: 0}
