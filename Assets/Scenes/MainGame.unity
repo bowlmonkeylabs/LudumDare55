@@ -138,6 +138,10 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4757832598934977484, guid: 209a35df32ee3a741a413a1070e3e75b, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 6218431209115767019, guid: 209a35df32ee3a741a413a1070e3e75b, type: 3}
       propertyPath: m_Name
       value: Player
