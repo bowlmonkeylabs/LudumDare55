@@ -64,7 +64,7 @@ MonoBehaviour:
   - id: 2
     fields:
     - title: Name
-      value: Boy, 11
+      value: Phineas
       type: 0
       typeString: 
     - title: Pictures
@@ -86,7 +86,7 @@ MonoBehaviour:
   - id: 3
     fields:
     - title: Name
-      value: Mother
+      value: Phineas' Mom
       type: 0
       typeString: 
     - title: Pictures
@@ -108,7 +108,7 @@ MonoBehaviour:
   - id: 4
     fields:
     - title: Name
-      value: Summoner03
+      value: Cosworth Patriarch
       type: 0
       typeString: 
     - title: Pictures
@@ -745,7 +745,9 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Hello
+        value: "[lua(Actor[\"Player\"].FullName)]! Come here this instant! My son
+          may have gotten you to clean the carpet, but he forgot about the windows,
+          they are disgusting! You\u2019ll need more than a vacuum for this!"
         type: 0
         typeString: 
       - title: Sequence
@@ -951,7 +953,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Help me clean me undies, [lua(Actor["Player"].FullName)]
+        value: Damn dog is dirtying up the bedroom, but how am I supposed to clearn
+          it when I can't even catch it?! Quick, help me [lua(Actor["Player"].FullName)]!
         type: 0
         typeString: 
       - title: Sequence
@@ -1259,7 +1262,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Me stinky
+        value: '[lua(Actor["Player"].FullName)], I am truly disappointed with your
+          effort, consider yourself dismissed.'
         type: 0
         typeString: 
       - title: Sequence
@@ -1314,7 +1318,9 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: All clean
+        value: "Thank you, [lua(Actor[\"Player\"].FullName)], you have proven you
+          are more than a simple Vacuumist. I shall recommend you to the Cosworths,
+          they\u2019re having a dreadful time cleaning up after their dog."
         type: 0
         typeString: 
       - title: Sequence

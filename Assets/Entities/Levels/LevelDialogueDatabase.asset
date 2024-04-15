@@ -64,7 +64,7 @@ MonoBehaviour:
   - id: 2
     fields:
     - title: Name
-      value: Boy, 11
+      value: Phineas
       type: 0
       typeString: 
     - title: Pictures
@@ -86,7 +86,7 @@ MonoBehaviour:
   - id: 3
     fields:
     - title: Name
-      value: Mother
+      value: Phineas' Mom
       type: 0
       typeString: 
     - title: Pictures
@@ -108,7 +108,7 @@ MonoBehaviour:
   - id: 4
     fields:
     - title: Name
-      value: Summoner03
+      value: Cosworth Patriarch
       type: 0
       typeString: 
     - title: Pictures
@@ -324,7 +324,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Ok
+        value: '[Start]'
         type: 0
         typeString: 
       - title: Sequence
@@ -346,7 +346,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 64
+        x: 65
         y: 276
         width: 160
         height: 30
@@ -500,7 +500,7 @@ MonoBehaviour:
       - originConversationID: 3
         originDialogueID: 3
         destinationConversationID: 3
-        destinationDialogueID: 7
+        destinationDialogueID: 8
         isConnector: 0
         priority: 2
       conditionsString: (Variable["TaskSucceed"] == false)
@@ -594,7 +594,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: 
+        value: '[Next Level]'
         type: 0
         typeString: 
       - title: Sequence
@@ -616,8 +616,57 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 254
-        y: 396
+        x: 134
+        y: 433
+        width: 160
+        height: 30
+    - id: 8
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[Retry]'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 3
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 495
+        y: 413
         width: 160
         height: 30
     entryGroups: []
@@ -745,7 +794,9 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Hello
+        value: "[lua(Actor[\"Player\"].FullName)]! Come here this instant! My son
+          may have gotten you to clean the carpet, but he forgot about the windows,
+          they are disgusting! You\u2019ll need more than a vacuum for this!"
         type: 0
         typeString: 
       - title: Sequence
@@ -800,7 +851,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: 
+        value: '[Start]'
         type: 0
         typeString: 
       - title: Sequence
@@ -951,7 +1002,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Help me clean me undies, [lua(Actor["Player"].FullName)]
+        value: Damn dog is dirtying up the bedroom, but how am I supposed to clearn
+          it when I can't even catch it?! Quick, help me [lua(Actor["Player"].FullName)]!
         type: 0
         typeString: 
       - title: Sequence
@@ -1006,7 +1058,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Ok
+        value: '[Start]'
         type: 0
         typeString: 
       - title: Sequence
@@ -1259,7 +1311,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Me stinky
+        value: '[lua(Actor["Player"].FullName)], I am truly disappointed with your
+          effort, consider yourself dismissed.'
         type: 0
         typeString: 
       - title: Sequence
@@ -1277,7 +1330,7 @@ MonoBehaviour:
       - originConversationID: 7
         originDialogueID: 3
         destinationConversationID: 7
-        destinationDialogueID: 7
+        destinationDialogueID: 8
         isConnector: 0
         priority: 2
       conditionsString: (Variable["TaskSucceed"] == false)
@@ -1314,7 +1367,9 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: All clean
+        value: "Thank you, [lua(Actor[\"Player\"].FullName)], you have proven you
+          are more than a simple Vacuumist. I shall recommend you to the Cosworths,
+          they\u2019re having a dreadful time cleaning up after their dog."
         type: 0
         typeString: 
       - title: Sequence
@@ -1369,7 +1424,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: 
+        value: '[Next Step]'
         type: 0
         typeString: 
       - title: Sequence
@@ -1391,8 +1446,57 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 254
-        y: 396
+        x: 97
+        y: 418
+        width: 160
+        height: 30
+    - id: 8
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 3
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[Retry]'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 7
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 519
+        y: 410
         width: 160
         height: 30
     entryGroups: []
@@ -1526,7 +1630,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Me stinky
+        value: Useless demon! Get out of my sight!
         type: 0
         typeString: 
       - title: Sequence
@@ -1544,7 +1648,7 @@ MonoBehaviour:
       - originConversationID: 8
         originDialogueID: 3
         destinationConversationID: 8
-        destinationDialogueID: 7
+        destinationDialogueID: 8
         isConnector: 0
         priority: 2
       conditionsString: (Variable["TaskSucceed"] == false)
@@ -1581,7 +1685,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: All clean
+        value: You're a lifesaver [lua(Actor["Player"].FullName)], I will definitely
+          recommend you to my clients.
         type: 0
         typeString: 
       - title: Sequence
@@ -1636,7 +1741,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: 
+        value: '[Next Level]'
         type: 0
         typeString: 
       - title: Sequence
@@ -1658,8 +1763,57 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 254
-        y: 396
+        x: 44
+        y: 425
+        width: 160
+        height: 30
+    - id: 8
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 4
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[Retry]'
+        type: 0
+        typeString: 
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 8
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 394
+        y: 441
         width: 160
         height: 30
     entryGroups: []
