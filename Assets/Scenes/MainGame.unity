@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1405959880797009722, guid: 209a35df32ee3a741a413a1070e3e75b, type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 58.70761
+      objectReference: {fileID: 0}
     - target: {fileID: 3618423720450214294, guid: 209a35df32ee3a741a413a1070e3e75b, type: 3}
       propertyPath: m_RaycastTarget
       value: 0
@@ -189,6 +193,10 @@ PrefabInstance:
     - target: {fileID: 7982221922960245371, guid: 209a35df32ee3a741a413a1070e3e75b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295406715259395091, guid: 209a35df32ee3a741a413a1070e3e75b, type: 3}
+      propertyPath: field of view
+      value: 58.70761
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 209a35df32ee3a741a413a1070e3e75b, type: 3}

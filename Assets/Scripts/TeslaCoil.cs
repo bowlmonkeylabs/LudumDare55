@@ -8,12 +8,16 @@ using UnityEngine;
 namespace BML.Scripts {
     public class TeslaCoil : MonoBehaviour
     {
-        [SerializeField] private Collider _triggerCollider;
         [SerializeField] private TimerReference _cooldownTimer;
         [SerializeField] private TimerReference _timer;
-        [SerializeField] private DamageOnCollision _damageOnCollision;
         [SerializeField] private LayerMask _playerMask;
         [SerializeField] private MMF_Player _electricFeedbacks;
+        [SerializeField] private MMF_Player _shockFeedbacks;
+        [SerializeField] private int _damage = 1;
+        [SerializeField] private DamageType _damageType;
+
+        private bool isEnabled;
+        private bool isCleaned;
 
         // private void OnEnable() {
         //     _timer.SubscribeFinished(OnTimerFinish);
@@ -27,40 +31,54 @@ namespace BML.Scripts {
 
         private void Start() {
             _timer.RestartTimer();
-            ToggleTrigger(true);
+            ToggleActive(true);
         }
 
-        void Update() {
+        void Update()
+        {
+            if (isCleaned) return;
+            
             _timer.UpdateTime();
             _cooldownTimer.UpdateTime();
             
             if(_timer.IsFinished && !_cooldownTimer.IsStarted) {
                 _timer.ResetTimer();
-                ToggleTrigger(false);
+                ToggleActive(false);
                 _cooldownTimer.StartTimer();
             }
 
             if(_cooldownTimer.IsFinished && !_timer.IsStarted) {
-                _cooldownTimer.ResetTimer();
                 _timer.StartTimer();
-                ToggleTrigger(true);
+                ToggleActive(true);
+                _cooldownTimer.ResetTimer();
             }
         }
 
-        protected void OnTriggerEnter(Collider other)
+        public void TryShock()
         {
+            if (!isEnabled) return;
             
-            if(_playerMask.MMContains(other.gameObject)) {
-              this._damageOnCollision.AttemptDamage(other);
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, 999, _playerMask);
+            foreach (var hitCollider in hitColliders)
+            {
+                hitCollider.GetComponent<Damageable>()?.TakeDamage(new HitInfo(_damageType, _damage, Vector3.zero));
+                _shockFeedbacks.PlayFeedbacks();
             }
         }
 
-        void ToggleTrigger(bool enabled) {
-            _triggerCollider.enabled = enabled;
-            if(enabled) {
+        public void OnClean()
+        {
+            isCleaned = true;
+            isEnabled = false;
+            _electricFeedbacks.StopFeedbacks();
+        }
+
+        void ToggleActive(bool newState) {
+            isEnabled = newState;
+            if(isEnabled) {
                 _electricFeedbacks.PlayFeedbacks();
             } else {
-                _electricFeedbacks.ResetFeedbacks();
+                _electricFeedbacks.StopFeedbacks();
             }
         }
     }
