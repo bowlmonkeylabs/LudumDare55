@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: LudumDare55
+  companyName: Bowl Monkey Labs
+  productName: Cleanin' Demon
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -134,7 +134,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.1
+  bundleVersion: 1.0
   preloadedAssets:
   - {fileID: 0}
   - {fileID: 11400000, guid: afd97fc625f59dd4aa15b35ae3a0da72, type: 2}
@@ -170,6 +170,7 @@ PlayerSettings:
   - {fileID: 11400000, guid: 954c62a42c382e6459961346eadcd46e, type: 2}
   - {fileID: 11400000, guid: b59d29542364f5946b5601705082c094, type: 2}
   - {fileID: 11400000, guid: f6750a6e6e099e64f95401ed7be38fcb, type: 2}
+  - {fileID: 11400000, guid: 793e34c2269f4f843915673a02ce376b, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -186,7 +187,8 @@ PlayerSettings:
   resolutionScalingMode: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Standalone: com.Bowl-Monkey-Labs.Cleanin--Demon
   buildNumber:
     Standalone: 0
     iPhone: 0
