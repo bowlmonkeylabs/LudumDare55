@@ -437,16 +437,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 369685358}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e42e487cae134e40a1aeba727a36c2e3, type: 3}
+  m_Script: {fileID: 11500000, guid: ca064d1afde3455197506fe05190cb59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Enabled:
-    UseConstant: 0
-    EnableInstanceOptions: 0
-    InstanceName: 
-    InstancePath: IntermediateProperties
+    ReferenceTypeSelector: 4
     ConstantValue: 0
-    Variable: {fileID: 11400000, guid: c181fe980d400114984d346b9f658df9, type: 2}
+    ReferenceValue_BoolVariable: {fileID: 0}
+    ReferenceValue_FloatVariable: {fileID: 0}
+    ReferenceValue_IntVariable: {fileID: 0}
+    ReferenceValue_FunctionVariable: {fileID: 11400000, guid: e96851a1c46c9934688a5745bb639b9b, type: 2}
   Targets:
   - {fileID: 1994118850}
 --- !u!1 &810961830
