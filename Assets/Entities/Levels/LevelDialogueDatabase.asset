@@ -79,7 +79,7 @@ MonoBehaviour:
       value: False
       type: 2
       typeString: CustomFieldType_Boolean
-    portrait: {fileID: 0}
+    portrait: {fileID: 2800000, guid: 6a30e932e601f8243870444371cea6e6, type: 3}
     spritePortrait: {fileID: 0}
     alternatePortraits: []
     spritePortraits: []
@@ -101,7 +101,7 @@ MonoBehaviour:
       value: False
       type: 2
       typeString: CustomFieldType_Boolean
-    portrait: {fileID: 0}
+    portrait: {fileID: 2800000, guid: d3c94f25d437a6041871bb9557988fd2, type: 3}
     spritePortrait: {fileID: 0}
     alternatePortraits: []
     spritePortraits: []
@@ -123,7 +123,95 @@ MonoBehaviour:
       value: False
       type: 2
       typeString: CustomFieldType_Boolean
-    portrait: {fileID: 0}
+    portrait: {fileID: 2800000, guid: 3242f5ffe9cb94a418948a4645e5b3ad, type: 3}
+    spritePortrait: {fileID: 0}
+    alternatePortraits: []
+    spritePortraits: []
+  - id: 5
+    fields:
+    - title: Name
+      value: Mad Scientist
+      type: 0
+      typeString: 
+    - title: Pictures
+      value: '[]'
+      type: 3
+      typeString: CustomFieldType_Files
+    - title: Description
+      value: 
+      type: 0
+      typeString: 
+    - title: IsPlayer
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    portrait: {fileID: 2800000, guid: abf54d9925d96584f83b4387be6b92b9, type: 3}
+    spritePortrait: {fileID: 0}
+    alternatePortraits: []
+    spritePortraits: []
+  - id: 6
+    fields:
+    - title: Name
+      value: Gravedigger
+      type: 0
+      typeString: 
+    - title: Pictures
+      value: '[]'
+      type: 3
+      typeString: CustomFieldType_Files
+    - title: Description
+      value: 
+      type: 0
+      typeString: 
+    - title: IsPlayer
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    portrait: {fileID: 2800000, guid: ab590123c8d84f84cba6131cf8158d57, type: 3}
+    spritePortrait: {fileID: 0}
+    alternatePortraits: []
+    spritePortraits: []
+  - id: 7
+    fields:
+    - title: Name
+      value: Horder
+      type: 0
+      typeString: 
+    - title: Pictures
+      value: '[]'
+      type: 3
+      typeString: CustomFieldType_Files
+    - title: Description
+      value: 
+      type: 0
+      typeString: 
+    - title: IsPlayer
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    portrait: {fileID: 2800000, guid: 9ed0beba284af52458dab946c7684f1e, type: 3}
+    spritePortrait: {fileID: 0}
+    alternatePortraits: []
+    spritePortraits: []
+  - id: 8
+    fields:
+    - title: Name
+      value: Bozos
+      type: 0
+      typeString: 
+    - title: Pictures
+      value: '[]'
+      type: 3
+      typeString: CustomFieldType_Files
+    - title: Description
+      value: 
+      type: 0
+      typeString: 
+    - title: IsPlayer
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    portrait: {fileID: 2800000, guid: 8ca606d1df3131b4795668705a7fef3a, type: 3}
     spritePortrait: {fileID: 0}
     alternatePortraits: []
     spritePortraits: []
@@ -1825,8 +1913,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 45
-        y: 241
+        x: 43
+        y: 244
         width: 160
         height: 30
     - id: 7
@@ -2136,7 +2224,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Actor
-        value: 4
+        value: 7
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -2348,7 +2436,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 4
+        value: 7
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -2403,7 +2491,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 4
+        value: 7
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -2415,8 +2503,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: You're a lifesaver [lua(Actor["Player"].FullName)], I will definitely
-          recommend you to my clients.
+        value: You did it [lua(Actor["Player"].FullName)], but don't be eyeing my
+          merchandise.
         type: 0
         typeString: 
       - title: Sequence
@@ -2444,7 +2532,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 45
+        x: 48
         y: 241
         width: 160
         height: 30
@@ -3182,7 +3270,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Actor
-        value: 4
+        value: 5
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -3395,7 +3483,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 4
+        value: 5
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -3435,8 +3523,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 382
-        y: 266
+        x: 381
+        y: 265
         width: 160
         height: 30
     - id: 4
@@ -3450,7 +3538,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 4
+        value: 5
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -3462,8 +3550,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: You're a lifesaver [lua(Actor["Player"].FullName)], I will definitely
-          recommend you to my clients.
+        value: Vonderful [lua(Actor["Player"].FullName)], now I can get back to electrocuting
+          things!
         type: 0
         typeString: 
       - title: Sequence
@@ -3706,7 +3794,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Actor
-        value: 4
+        value: 6
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -3718,7 +3806,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: Get the ghosts!
+        value: I might have summoned evil spirits when I dug up that body...
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -3813,7 +3901,7 @@ MonoBehaviour:
       type: 0
       typeString: CustomFieldType_Text
     - title: Actor
-      value: 2
+      value: 8
       type: 5
       typeString: CustomFieldType_Actor
     - title: Conversant
@@ -3857,7 +3945,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 1
+        value: 8
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -3912,7 +4000,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Actor
-        value: 4
+        value: 8
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -4124,7 +4212,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 4
+        value: 6
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -4165,7 +4253,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 382
-        y: 266
+        y: 265
         width: 160
         height: 30
     - id: 4
@@ -4179,7 +4267,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 4
+        value: 6
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -4191,8 +4279,8 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: You're a lifesaver [lua(Actor["Player"].FullName)], I will definitely
-          recommend you to my clients.
+        value: Great job [lua(Actor["Player"].FullName)], now I can keep digging
+          up bodies.
         type: 0
         typeString: 
       - title: Sequence
@@ -4336,7 +4424,7 @@ MonoBehaviour:
       type: 0
       typeString: CustomFieldType_Text
     - title: Actor
-      value: 2
+      value: 8
       type: 5
       typeString: CustomFieldType_Actor
     - title: Conversant
@@ -4380,7 +4468,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 1
+        value: 8
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -4441,7 +4529,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 4
+        value: 8
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -4496,7 +4584,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 4
+        value: 8
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -4508,8 +4596,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: You're a lifesaver [lua(Actor["Player"].FullName)], I will definitely
-          recommend you to my clients.
+        value: You've done well [lua(Actor["Player"].FullName)], just as I had planned...
         type: 0
         typeString: 
       - title: Sequence
@@ -4538,7 +4625,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 45
-        y: 241
+        y: 244
         width: 160
         height: 30
     - id: 7
