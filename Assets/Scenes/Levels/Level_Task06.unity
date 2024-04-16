@@ -910,7 +910,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3146742898766837324, guid: ff489f8d25d09f9459f2f102cd6ba7a6, type: 3}
       propertyPath: _levelTime.ConstantValue
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff489f8d25d09f9459f2f102cd6ba7a6, type: 3}
