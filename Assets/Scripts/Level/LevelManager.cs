@@ -36,7 +36,8 @@ namespace BML.Scripts.Level
         [SerializeField] private CurrentSceneLevelTaskDictionary _levelTasksDict;
         [SerializeField] private DialogueActor _dialogueActor;
         [SerializeField] private PixelCrushers.DialogueSystem.Wrappers.DialogueSystemTrigger _dialogueSystemTrigger;
-        
+
+        [SerializeField] private float _winDelay = 2f;
         [SerializeField] private UnityEvent _onWinLevel;
         [SerializeField] private UnityEvent _onLoseLevel;
 
@@ -97,9 +98,13 @@ namespace BML.Scripts.Level
                 Debug.Log("No remaining cleanables, level is clean!");
                 
                 _levelTimer.StopTimer();
-                DialogueLua.SetVariable("TaskSucceed", true);
-                this.StartDebriefConversation();
-                _onWinLevel.Invoke();
+                LeanTween.value(0, 1, _winDelay)
+                    .setOnComplete(() =>
+                    {
+                        DialogueLua.SetVariable("TaskSucceed", true);
+                        this.StartDebriefConversation();
+                        _onWinLevel.Invoke();
+                    });
             }
         }
 

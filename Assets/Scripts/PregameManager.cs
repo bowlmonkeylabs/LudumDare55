@@ -27,6 +27,8 @@ namespace BML.Scripts
         [SerializeField] private TransformSceneReference _playerSceneRef;
         [SerializeField] private TransformSceneReference _summonPointSceneRef;
 
+        [SerializeField] private BoolVariable _outputIsPregame;
+
         #region Unity lifecycle
 
         private void OnEnable()
@@ -41,17 +43,22 @@ namespace BML.Scripts
         
         private void Start()
         {
+            _outputIsPregame.Value = true;
+            
             var kinematicCharacterMotor = _playerSceneRef.Value.GetComponent<KinematicCharacterMotor>();
             kinematicCharacterMotor.SetPositionAndRotation(_summonPointSceneRef.Value.position, _summonPointSceneRef.Value.rotation);
             
             _dialogueActor.actor = _levelTasksDict.TryGetCurrentLevelTask()?.Actor;
             _dialogueSystemTrigger.conversation = GetPregameConversationTitle();
-            
-            _dialogueSystemTrigger.OnUse();
-            Debug.Log("Starting Pregame Dialogue");
         }
 
         #endregion
+        
+        public void StartConversation()
+        {
+            _dialogueSystemTrigger.OnUse();
+            Debug.Log("Starting Pregame Dialogue");
+        }
         
         private string GetPregameConversationTitle()
         {
@@ -65,6 +72,8 @@ namespace BML.Scripts
         {
             Debug.Log($"OnStartTask: {_levelTasksDict.TryGetCurrentLevelTask()?.SceneCollection.name}");
             // TODO exit dialogue
+
+            _outputIsPregame.Value = false;
             
             // TODO add transition?
             SceneHelper.current.OpenOrReopenCollection(_levelTasksDict.TryGetCurrentLevelTask()?.SceneCollection);

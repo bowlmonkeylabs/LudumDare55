@@ -15,21 +15,16 @@ MonoBehaviour:
   _populateMode: 2
   FolderPath: 
   IncludeSubdirectories: 0
-  ContainerKey: 1
+  ContainerKey: 1024
   Description: 
   TriggerVariables: []
-  BoolVariables: []
+  BoolVariables:
+  - {fileID: 11400000, guid: 3975cff0b522fb945a1344e66029a983, type: 2}
   IntVariables: []
-  FloatVariables:
-  - {fileID: 11400000, guid: a0dd7973c053207418e10c8f444ee980, type: 2}
-  - {fileID: 11400000, guid: 1f0f67713c0e3c64b8004abf9c8be967, type: 2}
-  - {fileID: 11400000, guid: 8091ca174bbd95f4fb0294a85a7f5aa4, type: 2}
-  - {fileID: 11400000, guid: fa1fa10a59883774e8ea1f3734c92832, type: 2}
-  - {fileID: 11400000, guid: 6c0886eb2229b2b4f9490a82edcbbd84, type: 2}
+  FloatVariables: []
   Vector2Variables: []
   Vector3Variables: []
   QuaternionVariables: []
-  TimerVariables:
-  - {fileID: 11400000, guid: ef23a23acc8d18344b36d80137041230, type: 2}
+  TimerVariables: []
   FunctionVariables: []
   LootTableVariables: []
