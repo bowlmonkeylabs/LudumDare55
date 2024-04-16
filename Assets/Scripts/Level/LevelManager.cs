@@ -98,12 +98,13 @@ namespace BML.Scripts.Level
                 Debug.Log("No remaining cleanables, level is clean!");
                 
                 _levelTimer.StopTimer();
+                _onWinLevel.Invoke();
+
                 LeanTween.value(0, 1, _winDelay)
                     .setOnComplete(() =>
                     {
                         DialogueLua.SetVariable("TaskSucceed", true);
                         this.StartDebriefConversation();
-                        _onWinLevel.Invoke();
                     });
             }
         }
