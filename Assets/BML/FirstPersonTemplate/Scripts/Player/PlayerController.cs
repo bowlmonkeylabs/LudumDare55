@@ -10,7 +10,6 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using Micosmo.SensorToolkit;
 using MoreMountains.Feedbacks;
-using UnityEditor.IMGUI.Controls;
 
 namespace Player
 {
