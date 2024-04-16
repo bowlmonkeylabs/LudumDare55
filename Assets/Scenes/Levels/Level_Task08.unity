@@ -341,7 +341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3146742898766837324, guid: ff489f8d25d09f9459f2f102cd6ba7a6, type: 3}
       propertyPath: _levelTime.ConstantValue
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff489f8d25d09f9459f2f102cd6ba7a6, type: 3}
@@ -721,6 +721,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 597003379}
     m_Modifications:
+    - target: {fileID: 146685957744173929, guid: dde03ec3708bfee449f6e4e871141f4d, type: 3}
+      propertyPath: _health
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 561812149431186356, guid: dde03ec3708bfee449f6e4e871141f4d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -768,6 +772,10 @@ PrefabInstance:
     - target: {fileID: 561812149431186357, guid: dde03ec3708bfee449f6e4e871141f4d, type: 3}
       propertyPath: m_Name
       value: RotenWorld
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113201017108828529, guid: dde03ec3708bfee449f6e4e871141f4d, type: 3}
+      propertyPath: _health
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dde03ec3708bfee449f6e4e871141f4d, type: 3}
@@ -1214,13 +1222,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6389275099331892297}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.251, y: 0, z: -1.493}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000007599591}
+  m_LocalPosition: {x: 0, y: 0, z: 1.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6389275097796808313}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!1 &6389275099331892297
 GameObject:
   m_ObjectHideFlags: 0
