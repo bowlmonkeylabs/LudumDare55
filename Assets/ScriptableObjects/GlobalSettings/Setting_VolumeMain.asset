@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5be68029433444586fe71b7a1236e9, type: 3}
   m_Name: Setting_VolumeMain
   m_EditorClassIdentifier: 
+  enableLogs: 0
   Description: 
   includeInContainers: 1
-  enableLogs: 0
-  defaultValue: 0
-  runtimeValue: 0
+  defaultValue: 1
+  runtimeValue: 1
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
