@@ -1002,7 +1002,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: Damn dog is dirtying up the bedroom, but how am I supposed to clearn
+        value: Damn dog is dirtying up the bedroom, but how am I supposed to clean
           it when I can't even catch it?! Quick, help me [lua(Actor["Player"].FullName)]!
         type: 0
         typeString: 
