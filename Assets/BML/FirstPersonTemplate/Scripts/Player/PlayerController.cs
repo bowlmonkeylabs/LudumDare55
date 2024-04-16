@@ -10,6 +10,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using Micosmo.SensorToolkit;
 using MoreMountains.Feedbacks;
+using UnityEditor.IMGUI.Controls;
 
 namespace Player
 {
@@ -29,6 +30,8 @@ namespace Player
         [SerializeField, FoldoutGroup("Vacuum")] protected float _vacuumHitDelay = .2f;
         [SerializeField, FoldoutGroup("Vacuum")] protected MMF_Player _startVacuumFeedbacks;
         [SerializeField, FoldoutGroup("Vacuum")] protected MMF_Player _stopVacuumFeedbacks;
+        [SerializeField, FoldoutGroup("Vacuum")] protected MMF_Player _startVacuumDirtFeedbacks;
+        [SerializeField, FoldoutGroup("Vacuum")] protected MMF_Player _stopVacuumDirtFeedbacks;
         
         [SerializeField, FoldoutGroup("Spray")] protected LOSSensor _spraySensor;
         [SerializeField, FoldoutGroup("Spray")] protected int _sprayDamage = 1;
@@ -89,8 +92,11 @@ namespace Player
             
             if (vacuuming) 
                 _startVacuumFeedbacks.PlayFeedbacks();
-            else 
+            else
+            {
                 _stopVacuumFeedbacks.PlayFeedbacks();
+                _stopVacuumDirtFeedbacks.PlayFeedbacks();
+            }
             
             //Debug.Log($"OnPrimary: {value.isPressed}");
         }
@@ -167,10 +173,20 @@ namespace Player
             lastVacuumTime = Time.time;
             _vacuumSensor.PulseAll();
             _vacuumSensor.GetDetectedComponents(vacuumDetections);
-            vacuumDetections.ForEach(d => d.TakeDamage(new HitInfo
-                (DamageType.Vacuum, _vacuumDamage,
-                    (d.transform.position - transform.position).normalized))
+            bool successfulVacuum = false;
+            vacuumDetections.ForEach(d =>
+                {
+                    successfulVacuum = d.TakeDamage(new HitInfo
+                    (DamageType.Vacuum, _vacuumDamage,
+                        (d.transform.position - transform.position).normalized));
+                    
+                } 
             );
+
+            if (successfulVacuum)
+                _startVacuumDirtFeedbacks.PlayFeedbacks();
+            else
+                _stopVacuumDirtFeedbacks.PlayFeedbacks();
         }
 
         #endregion

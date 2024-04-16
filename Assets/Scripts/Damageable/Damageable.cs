@@ -19,10 +19,14 @@ namespace BML.Scripts {
 
         // public Dictionary<DamageType, DamageableItem> Value { get {return _value;}}
 
-        public void TakeDamage(HitInfo hitInfo)
+        public bool TakeDamage(HitInfo hitInfo)
         {
-            foreach(DamageableItem di in _damageable){
-                if(di.DamageType.HasFlag(hitInfo.DamageType)) {
+            bool dealtDamage = false;
+            foreach (DamageableItem di in _damageable)
+            {
+                
+                if (di.DamageType.HasFlag(hitInfo.DamageType))
+                {
                     var damageResult = di.ApplyDamage(hitInfo);
                     var damageRemaining = damageResult.Damage;
                     bool damagedTempHealth = false;
@@ -42,7 +46,8 @@ namespace BML.Scripts {
                         }
                     }
 
-                    bool dealtDamageToMainHealth = health.Damage(damageRemaining, damageResult.DamageType, damagedTempHealth);
+                    bool dealtDamageToMainHealth =
+                        health.Damage(damageRemaining, damageResult.DamageType, damagedTempHealth);
                     if (!dealtDamageToMainHealth && !damagedTempHealth)
                     {
                         di.OnFailDamage.Invoke(hitInfo);
@@ -51,13 +56,16 @@ namespace BML.Scripts {
 
                     _onDamage.Invoke(hitInfo);
                     di.OnDamage.Invoke(hitInfo);
+                    dealtDamage = true;
 
-                    if(health.IsDead) {
+                    if (health.IsDead)
+                    {
                         di.OnDeath.Invoke(hitInfo);
-                        break;
                     }
                 }
+                
             }
+            return dealtDamage;
         }
     }
 }
