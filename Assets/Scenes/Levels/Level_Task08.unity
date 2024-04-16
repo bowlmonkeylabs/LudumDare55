@@ -341,7 +341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3146742898766837324, guid: ff489f8d25d09f9459f2f102cd6ba7a6, type: 3}
       propertyPath: _levelTime.ConstantValue
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff489f8d25d09f9459f2f102cd6ba7a6, type: 3}
@@ -723,7 +723,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 146685957744173929, guid: dde03ec3708bfee449f6e4e871141f4d, type: 3}
       propertyPath: _health
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 561812149431186356, guid: dde03ec3708bfee449f6e4e871141f4d, type: 3}
       propertyPath: m_RootOrder
@@ -775,7 +775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3113201017108828529, guid: dde03ec3708bfee449f6e4e871141f4d, type: 3}
       propertyPath: _health
-      value: 9
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dde03ec3708bfee449f6e4e871141f4d, type: 3}
