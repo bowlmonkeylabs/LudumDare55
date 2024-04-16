@@ -7,6 +7,7 @@ using BML.ScriptableObjectCore.Scripts.Events;
 using BML.ScriptableObjectCore.Scripts.SceneReferences;
 using BML.ScriptableObjectCore.Scripts.Variables;
 using KinematicCharacterController;
+using MoreMountains.Feedbacks;
 using PixelCrushers.DialogueSystem.Wrappers;
 using PixelCrushers.DialogueSystem;
 using UnityEngine;
@@ -20,6 +21,8 @@ namespace BML.Scripts.Level
         [SerializeField] private GameEvent _onCleanedGameEvent;
         [SerializeField] private GameEvent _onLevelStarted;
         [SerializeField] private TimerVariable _levelTimer;
+        [SerializeField] private MMF_Player _lowTimeFeedbacks;
+        [SerializeField] private float _lowTimeThreshold = 5;
         [SerializeField] private GameEvent _onPlayerDeath;
         [SerializeField] private FloatReference _levelTime;
 
@@ -38,6 +41,8 @@ namespace BML.Scripts.Level
         [SerializeField] private UnityEvent _onLoseLevel;
 
         [SerializeField] private BoolVariable _outputPlayerWonGame;
+
+        private bool lowTimerFeedbacksPlayed;
 
         private void Start()
         {
@@ -67,6 +72,12 @@ namespace BML.Scripts.Level
 
         private void Update() {
             _levelTimer.UpdateTime();
+            
+            if (_levelTimer.RemainingTime < _lowTimeThreshold && !lowTimerFeedbacksPlayed) {
+                _lowTimeFeedbacks.PlayFeedbacks();
+                lowTimerFeedbacksPlayed = true;
+                Debug.Log("Playing low time feedbacks");
+            }
         }
         
         private string GetDebriefConversationTitle()
@@ -97,6 +108,7 @@ namespace BML.Scripts.Level
             DialogueLua.SetVariable("TaskSucceed", false);
             this.StartDebriefConversation();
             _onLoseLevel.Invoke();
+            Debug.Log("OnLevelFailed");
         }
 
         private void StartDebriefConversation() {
